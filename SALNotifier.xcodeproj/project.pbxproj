@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05DDE4491A34FCA100EAB40E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4481A34FCA100EAB40E /* main.m */; };
+		05DDE44C1A34FCA100EAB40E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE44B1A34FCA100EAB40E /* AppDelegate.m */; };
+		05DDE44F1A34FCA100EAB40E /* SALNotifier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE44D1A34FCA100EAB40E /* SALNotifier.xcdatamodeld */; };
+		05DDE4521A34FCA100EAB40E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4511A34FCA100EAB40E /* ViewController.m */; };
+		05DDE4551A34FCA100EAB40E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DDE4531A34FCA100EAB40E /* Main.storyboard */; };
+		05DDE4571A34FCA100EAB40E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DDE4561A34FCA100EAB40E /* Images.xcassets */; };
+		05DDE45A1A34FCA100EAB40E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DDE4581A34FCA100EAB40E /* LaunchScreen.xib */; };
+		05DDE4661A34FCA100EAB40E /* SALNotifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4651A34FCA100EAB40E /* SALNotifierTests.m */; };
+		05DDE4701A34FF9200EAB40E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DDE46F1A34FF9200EAB40E /* CoreBluetooth.framework */; };
+		05DDE4791A35009200EAB40E /* CPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4781A35009200EAB40E /* CPeripheralManager.m */; };
+		05DDE47A1A35009200EAB40E /* CPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4781A35009200EAB40E /* CPeripheralManager.m */; };
+		05DDE47D1A35023400EAB40E /* CEventNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE47C1A35023400EAB40E /* CEventNotificationService.m */; };
+		05DDE47E1A35023400EAB40E /* CEventNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE47C1A35023400EAB40E /* CEventNotificationService.m */; };
+		05DDE4811A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */; };
+		05DDE4821A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05DDE4601A34FCA100EAB40E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05DDE43B1A34FCA100EAB40E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05DDE4421A34FCA100EAB40E;
+			remoteInfo = SALNotifier;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		059739F71A648EBC00E9E4C4 /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Defs.h; path = SALNotifier/Defs.h; sourceTree = "<group>"; };
+		05DDE4431A34FCA100EAB40E /* SALNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SALNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DDE4471A34FCA100EAB40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DDE4481A34FCA100EAB40E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05DDE44A1A34FCA100EAB40E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		05DDE44B1A34FCA100EAB40E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		05DDE44E1A34FCA100EAB40E /* SALNotifier.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SALNotifier.xcdatamodel; sourceTree = "<group>"; };
+		05DDE4501A34FCA100EAB40E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		05DDE4511A34FCA100EAB40E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		05DDE4541A34FCA100EAB40E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05DDE4561A34FCA100EAB40E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		05DDE4591A34FCA100EAB40E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		05DDE45F1A34FCA100EAB40E /* SALNotifierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SALNotifierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DDE4641A34FCA100EAB40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DDE4651A34FCA100EAB40E /* SALNotifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SALNotifierTests.m; sourceTree = "<group>"; };
+		05DDE46F1A34FF9200EAB40E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		05DDE4771A35009200EAB40E /* CPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPeripheralManager.h; path = SALNotifier/PeripheralBT/CPeripheralManager.h; sourceTree = "<group>"; };
+		05DDE4781A35009200EAB40E /* CPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPeripheralManager.m; path = SALNotifier/PeripheralBT/CPeripheralManager.m; sourceTree = "<group>"; };
+		05DDE47B1A35023400EAB40E /* CEventNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CEventNotificationService.h; path = SALNotifier/PeripheralBT/CEventNotificationService.h; sourceTree = "<group>"; };
+		05DDE47C1A35023400EAB40E /* CEventNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CEventNotificationService.m; path = SALNotifier/PeripheralBT/CEventNotificationService.m; sourceTree = "<group>"; };
+		05DDE47F1A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CEventNotificationStartStopCharacteristic.h; path = SALNotifier/PeripheralBT/CEventNotificationStartStopCharacteristic.h; sourceTree = "<group>"; };
+		05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CEventNotificationStartStopCharacteristic.m; path = SALNotifier/PeripheralBT/CEventNotificationStartStopCharacteristic.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05DDE4401A34FCA100EAB40E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DDE4701A34FF9200EAB40E /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DDE45C1A34FCA100EAB40E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05DDE43A1A34FCA100EAB40E = {
+			isa = PBXGroup;
+			children = (
+				05DDE4721A35002900EAB40E /* PeripheralManager */,
+				05DDE4451A34FCA100EAB40E /* SALNotifier */,
+				05DDE4621A34FCA100EAB40E /* SALNotifierTests */,
+				05DDE4441A34FCA100EAB40E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		05DDE4441A34FCA100EAB40E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05DDE4431A34FCA100EAB40E /* SALNotifier.app */,
+				05DDE45F1A34FCA100EAB40E /* SALNotifierTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05DDE4451A34FCA100EAB40E /* SALNotifier */ = {
+			isa = PBXGroup;
+			children = (
+				05DDE44A1A34FCA100EAB40E /* AppDelegate.h */,
+				05DDE44B1A34FCA100EAB40E /* AppDelegate.m */,
+				05DDE4501A34FCA100EAB40E /* ViewController.h */,
+				05DDE4511A34FCA100EAB40E /* ViewController.m */,
+				05DDE4531A34FCA100EAB40E /* Main.storyboard */,
+				05DDE4561A34FCA100EAB40E /* Images.xcassets */,
+				05DDE4581A34FCA100EAB40E /* LaunchScreen.xib */,
+				05DDE44D1A34FCA100EAB40E /* SALNotifier.xcdatamodeld */,
+				05DDE4461A34FCA100EAB40E /* Supporting Files */,
+			);
+			path = SALNotifier;
+			sourceTree = "<group>";
+		};
+		05DDE4461A34FCA100EAB40E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05DDE4711A34FF9A00EAB40E /* Frameworks */,
+				05DDE4471A34FCA100EAB40E /* Info.plist */,
+				05DDE4481A34FCA100EAB40E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05DDE4621A34FCA100EAB40E /* SALNotifierTests */ = {
+			isa = PBXGroup;
+			children = (
+				05DDE4651A34FCA100EAB40E /* SALNotifierTests.m */,
+				05DDE4631A34FCA100EAB40E /* Supporting Files */,
+			);
+			path = SALNotifierTests;
+			sourceTree = "<group>";
+		};
+		05DDE4631A34FCA100EAB40E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05DDE4641A34FCA100EAB40E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05DDE4711A34FF9A00EAB40E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05DDE46F1A34FF9200EAB40E /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05DDE4721A35002900EAB40E /* PeripheralManager */ = {
+			isa = PBXGroup;
+			children = (
+				059739F71A648EBC00E9E4C4 /* Defs.h */,
+				05DDE4771A35009200EAB40E /* CPeripheralManager.h */,
+				05DDE4781A35009200EAB40E /* CPeripheralManager.m */,
+				05DDE47B1A35023400EAB40E /* CEventNotificationService.h */,
+				05DDE47C1A35023400EAB40E /* CEventNotificationService.m */,
+				05DDE47F1A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.h */,
+				05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */,
+			);
+			name = PeripheralManager;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		05DDE4421A34FCA100EAB40E /* SALNotifier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DDE4691A34FCA100EAB40E /* Build configuration list for PBXNativeTarget "SALNotifier" */;
+			buildPhases = (
+				05DDE43F1A34FCA100EAB40E /* Sources */,
+				05DDE4401A34FCA100EAB40E /* Frameworks */,
+				05DDE4411A34FCA100EAB40E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SALNotifier;
+			productName = SALNotifier;
+			productReference = 05DDE4431A34FCA100EAB40E /* SALNotifier.app */;
+			productType = "com.apple.product-type.application";
+		};
+		05DDE45E1A34FCA100EAB40E /* SALNotifierTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DDE46C1A34FCA100EAB40E /* Build configuration list for PBXNativeTarget "SALNotifierTests" */;
+			buildPhases = (
+				05DDE45B1A34FCA100EAB40E /* Sources */,
+				05DDE45C1A34FCA100EAB40E /* Frameworks */,
+				05DDE45D1A34FCA100EAB40E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05DDE4611A34FCA100EAB40E /* PBXTargetDependency */,
+			);
+			name = SALNotifierTests;
+			productName = SALNotifierTests;
+			productReference = 05DDE45F1A34FCA100EAB40E /* SALNotifierTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05DDE43B1A34FCA100EAB40E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Apio Systems";
+				TargetAttributes = {
+					05DDE4421A34FCA100EAB40E = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = PR6C6UCWP8;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					05DDE45E1A34FCA100EAB40E = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 05DDE4421A34FCA100EAB40E;
+					};
+				};
+			};
+			buildConfigurationList = 05DDE43E1A34FCA100EAB40E /* Build configuration list for PBXProject "SALNotifier" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05DDE43A1A34FCA100EAB40E;
+			productRefGroup = 05DDE4441A34FCA100EAB40E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05DDE4421A34FCA100EAB40E /* SALNotifier */,
+				05DDE45E1A34FCA100EAB40E /* SALNotifierTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05DDE4411A34FCA100EAB40E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DDE4551A34FCA100EAB40E /* Main.storyboard in Resources */,
+				05DDE45A1A34FCA100EAB40E /* LaunchScreen.xib in Resources */,
+				05DDE4571A34FCA100EAB40E /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DDE45D1A34FCA100EAB40E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05DDE43F1A34FCA100EAB40E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DDE4811A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */,
+				05DDE44F1A34FCA100EAB40E /* SALNotifier.xcdatamodeld in Sources */,
+				05DDE47D1A35023400EAB40E /* CEventNotificationService.m in Sources */,
+				05DDE44C1A34FCA100EAB40E /* AppDelegate.m in Sources */,
+				05DDE4521A34FCA100EAB40E /* ViewController.m in Sources */,
+				05DDE4491A34FCA100EAB40E /* main.m in Sources */,
+				05DDE4791A35009200EAB40E /* CPeripheralManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DDE45B1A34FCA100EAB40E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DDE4661A34FCA100EAB40E /* SALNotifierTests.m in Sources */,
+				05DDE47E1A35023400EAB40E /* CEventNotificationService.m in Sources */,
+				05DDE47A1A35009200EAB40E /* CPeripheralManager.m in Sources */,
+				05DDE4821A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05DDE4611A34FCA100EAB40E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05DDE4421A34FCA100EAB40E /* SALNotifier */;
+			targetProxy = 05DDE4601A34FCA100EAB40E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		05DDE4531A34FCA100EAB40E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05DDE4541A34FCA100EAB40E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05DDE4581A34FCA100EAB40E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05DDE4591A34FCA100EAB40E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		05DDE4671A34FCA100EAB40E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		05DDE4681A34FCA100EAB40E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		05DDE46A1A34FCA100EAB40E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = SALNotifier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05DDE46B1A34FCA100EAB40E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = SALNotifier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05DDE46D1A34FCA100EAB40E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SALNotifierTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SALNotifier.app/SALNotifier";
+			};
+			name = Debug;
+		};
+		05DDE46E1A34FCA100EAB40E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SALNotifierTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SALNotifier.app/SALNotifier";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05DDE43E1A34FCA100EAB40E /* Build configuration list for PBXProject "SALNotifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DDE4671A34FCA100EAB40E /* Debug */,
+				05DDE4681A34FCA100EAB40E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DDE4691A34FCA100EAB40E /* Build configuration list for PBXNativeTarget "SALNotifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DDE46A1A34FCA100EAB40E /* Debug */,
+				05DDE46B1A34FCA100EAB40E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DDE46C1A34FCA100EAB40E /* Build configuration list for PBXNativeTarget "SALNotifierTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DDE46D1A34FCA100EAB40E /* Debug */,
+				05DDE46E1A34FCA100EAB40E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		05DDE44D1A34FCA100EAB40E /* SALNotifier.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				05DDE44E1A34FCA100EAB40E /* SALNotifier.xcdatamodel */,
+			);
+			currentVersion = 05DDE44E1A34FCA100EAB40E /* SALNotifier.xcdatamodel */;
+			path = SALNotifier.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 05DDE43B1A34FCA100EAB40E /* Project object */;
+}
