@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A940801A729765002C1DAC /* ConstantDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A9407F1A729765002C1DAC /* ConstantDefines.m */; };
+		05A940811A729765002C1DAC /* ConstantDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A9407F1A729765002C1DAC /* ConstantDefines.m */; };
+		05A940841A72A26B002C1DAC /* HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A940831A72A26B002C1DAC /* HelperMethods.m */; };
+		05A940851A72A26B002C1DAC /* HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A940831A72A26B002C1DAC /* HelperMethods.m */; };
 		05DDE4491A34FCA100EAB40E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4481A34FCA100EAB40E /* main.m */; };
 		05DDE44C1A34FCA100EAB40E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE44B1A34FCA100EAB40E /* AppDelegate.m */; };
 		05DDE44F1A34FCA100EAB40E /* SALNotifier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE44D1A34FCA100EAB40E /* SALNotifier.xcdatamodeld */; };
@@ -35,7 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		059739F71A648EBC00E9E4C4 /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Defs.h; path = SALNotifier/Defs.h; sourceTree = "<group>"; };
+		05A9407E1A729765002C1DAC /* ConstantDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantDefines.h; path = SALNotifier/Helpers/ConstantDefines.h; sourceTree = "<group>"; };
+		05A9407F1A729765002C1DAC /* ConstantDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConstantDefines.m; path = SALNotifier/Helpers/ConstantDefines.m; sourceTree = "<group>"; };
+		05A940821A72A26B002C1DAC /* HelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperMethods.h; path = SALNotifier/Helpers/HelperMethods.h; sourceTree = "<group>"; };
+		05A940831A72A26B002C1DAC /* HelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperMethods.m; path = SALNotifier/Helpers/HelperMethods.m; sourceTree = "<group>"; };
+		05A940861A72A2A2002C1DAC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Defs.h; path = SALNotifier/Helpers/Defs.h; sourceTree = "<group>"; };
 		05DDE4431A34FCA100EAB40E /* SALNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SALNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DDE4471A34FCA100EAB40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05DDE4481A34FCA100EAB40E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,9 +86,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05A9407D1A72973D002C1DAC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				05A940861A72A2A2002C1DAC /* Defs.h */,
+				05A9407E1A729765002C1DAC /* ConstantDefines.h */,
+				05A9407F1A729765002C1DAC /* ConstantDefines.m */,
+				05A940821A72A26B002C1DAC /* HelperMethods.h */,
+				05A940831A72A26B002C1DAC /* HelperMethods.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		05DDE43A1A34FCA100EAB40E = {
 			isa = PBXGroup;
 			children = (
+				05A9407D1A72973D002C1DAC /* Helpers */,
 				05DDE4721A35002900EAB40E /* PeripheralManager */,
 				05DDE4451A34FCA100EAB40E /* SALNotifier */,
 				05DDE4621A34FCA100EAB40E /* SALNotifierTests */,
@@ -151,7 +172,6 @@
 		05DDE4721A35002900EAB40E /* PeripheralManager */ = {
 			isa = PBXGroup;
 			children = (
-				059739F71A648EBC00E9E4C4 /* Defs.h */,
 				05DDE4771A35009200EAB40E /* CPeripheralManager.h */,
 				05DDE4781A35009200EAB40E /* CPeripheralManager.m */,
 				05DDE47B1A35023400EAB40E /* CEventNotificationService.h */,
@@ -268,10 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A940841A72A26B002C1DAC /* HelperMethods.m in Sources */,
 				05DDE4811A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */,
 				05DDE44F1A34FCA100EAB40E /* SALNotifier.xcdatamodeld in Sources */,
 				05DDE47D1A35023400EAB40E /* CEventNotificationService.m in Sources */,
 				05DDE44C1A34FCA100EAB40E /* AppDelegate.m in Sources */,
+				05A940801A729765002C1DAC /* ConstantDefines.m in Sources */,
 				05DDE4521A34FCA100EAB40E /* ViewController.m in Sources */,
 				05DDE4491A34FCA100EAB40E /* main.m in Sources */,
 				05DDE4791A35009200EAB40E /* CPeripheralManager.m in Sources */,
@@ -282,9 +304,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A940851A72A26B002C1DAC /* HelperMethods.m in Sources */,
 				05DDE4661A34FCA100EAB40E /* SALNotifierTests.m in Sources */,
 				05DDE47E1A35023400EAB40E /* CEventNotificationService.m in Sources */,
 				05DDE47A1A35009200EAB40E /* CPeripheralManager.m in Sources */,
+				05A940811A729765002C1DAC /* ConstantDefines.m in Sources */,
 				05DDE4821A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

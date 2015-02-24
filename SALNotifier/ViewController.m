@@ -36,6 +36,12 @@ static NSString * const START_HTR_TEXT = @"Start Hard-Right";
 static NSString * const STOP_ADVERTISING_TEXT = @"Stop Advertising";
 static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 
+static NSString * const STOP_ICYROAD_TEXT = @"Stop Icy Road";
+static NSString * const START_ICYROAD_TEXT = @"Start Icy Road";
+
+static NSString * const STOP_SNOWYROAD_TEXT = @"Stop Snow Road";
+static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
+
 static const short ADVERTISING_BUTTON_BACKGROUND_IMG_TAG_VALUE = 1;
 static const short HARDBRAKING_BUTTON_BACKGROUND_IMG_TAG_VALUE = 2;
 static const short RAPIDACCELERATION_BUTTON_BACKGROUND_IMG_TAG_VALUE = 3;
@@ -45,6 +51,8 @@ static const short HARD_LEFT_BUTTON_BACKGROUND_IMG_TAG_VALUE = 6;
 static const short VEHICLE_EXIT_BUTTON_BACKGROUND_IMG_TAG_VALUE = 7;
 static const short HARD_RIGHT_BUTTON_BACKGROUND_IMG_TAG_VALUE = 8;
 static const short SPEEDING_BUTTON_BACKGROUND_IMG_TAG_VALUE = 9;
+static const short SNOWROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE = 10;
+static const short ICYROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE = 11;
 
 @interface ViewController ()
 	@property(nonatomic ,strong) CPeripheralManager *periphMgr;
@@ -57,6 +65,9 @@ static const short SPEEDING_BUTTON_BACKGROUND_IMG_TAG_VALUE = 9;
 	-(void)handleEventSP:(UIButton *)btn;//Speeding
 	-(void)handleEventHTL:(UIButton *)btn;//Hard-Turn Left
 	-(void)handleEventHTR:(UIButton *)btn;//Hard-Turn Right
+
+	-(void)handleEventIce:(UIButton *)btn;//Icy Road
+	-(void)handleEventSnow:(UIButton *)btn;//Snowy Road
 
 	-(void)configureButtonBackGround:(short)sBGImageTagIndex isStart:(BOOL)bIsStartOrStop;//TRUE = Start  FALSE = Stop
 
@@ -107,7 +118,11 @@ static const short SPEEDING_BUTTON_BACKGROUND_IMG_TAG_VALUE = 9;
 	else if([sender.restorationIdentifier compare:@"startStopHardTurnLeftButton"] == NSOrderedSame)
 		[self handleEventHTL:sender];
 	else if([sender.restorationIdentifier compare:@"startStopHardTurnRightButton"] == NSOrderedSame)
-		[self handleEventHTR:sender];	
+		[self handleEventHTR:sender];
+	else if([sender.restorationIdentifier compare:@"startStopIceRoadButton"] == NSOrderedSame)
+		[self handleEventIce:sender];
+	else if([sender.restorationIdentifier compare:@"startStopSnowRoadButton"] == NSOrderedSame)
+		[self handleEventSnow:sender];
 }
 
 -(void)handleEventHB:(UIButton *)btn
@@ -270,6 +285,47 @@ static const short SPEEDING_BUTTON_BACKGROUND_IMG_TAG_VALUE = 9;
 	}
 }
 
+-(void)handleEventIce:(UIButton *)btn//Icy Road
+{
+	CPeripheralManager *periphMgr = [CPeripheralManager thePeripheralManager];
+	
+	if([btn.currentTitle compare:START_ICYROAD_TEXT] == NSOrderedSame)//Starting a Icy Road event
+	{
+		[periphMgr updateServiceValue:ICY_START];
+		[btn setTitle:STOP_ICYROAD_TEXT forState:UIControlStateNormal];
+		
+		[self configureButtonBackGround:ICYROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE isStart:TRUE];
+	}
+	else if([btn.currentTitle compare:STOP_ICYROAD_TEXT] == NSOrderedSame)//Starting a Rapid Acceleration event
+	{
+		[periphMgr updateServiceValue:ICY_STOP];
+		[btn setTitle:START_ICYROAD_TEXT forState:UIControlStateNormal];
+		
+		[self configureButtonBackGround:ICYROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE isStart:FALSE];
+	}
+}
+
+-(void)handleEventSnow:(UIButton *)btn//Snowy Road
+{
+	CPeripheralManager *periphMgr = [CPeripheralManager thePeripheralManager];
+	
+	if([btn.currentTitle compare:START_SNOWYROAD_TEXT] == NSOrderedSame)//Starting a Icy Road event
+	{
+		[periphMgr updateServiceValue:SNOW_START];
+		[btn setTitle:STOP_SNOWYROAD_TEXT forState:UIControlStateNormal];
+		
+		[self configureButtonBackGround:SNOWROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE isStart:TRUE];
+	}
+	else if([btn.currentTitle compare:STOP_SNOWYROAD_TEXT] == NSOrderedSame)//Starting a Rapid Acceleration event
+	{
+		[periphMgr updateServiceValue:SNOW_STOP];
+		[btn setTitle:START_SNOWYROAD_TEXT forState:UIControlStateNormal];
+		
+		[self configureButtonBackGround:SNOWROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE isStart:FALSE];
+	}
+}
+
+
 -(void)configureButtonBackGround:(short)sBGImageTagIndex isStart:(BOOL)bIsStartOrStop
 {
 	UIView *vwBtnBG = [self.view viewWithTag:sBGImageTagIndex];
@@ -283,7 +339,7 @@ static const short SPEEDING_BUTTON_BACKGROUND_IMG_TAG_VALUE = 9;
 	if(bIsStartOrStop == TRUE)//If you're starting
 		vwBtnBG.layer.borderColor = (sBGImageTagIndex != ADVERTISING_BUTTON_BACKGROUND_IMG_TAG_VALUE) ? [[UIColor redColor]CGColor] : [[UIColor blueColor]CGColor];
 	else
-		vwBtnBG.layer.borderColor = [[UIColor whiteColor]CGColor];
+		vwBtnBG.layer.borderColor = [[UIColor colorWithRed:206.0 / 255.0 green:206.0 / 255.0 blue:206.0 / 255.0 alpha:1.0]CGColor];
 
 	vwBtnBG.layer.borderWidth = 5.0f;
 }

@@ -7,6 +7,7 @@
 */
 
 #import "CEventNotificationStartStopCharacteristic.h"
+#import "HelperMethods.h"
 
 @interface CEventNotificationStartStopCharacteristic()
 	@property(nonatomic, strong) NSData *startEvent;
@@ -65,65 +66,21 @@
 
 -(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr
 {
-	NSString *strMessage = nil;
-	
-	switch (eNotificationVal)
+	NSString *strMessage = [HelperMethods notificationEnumToString:eNotificationVal];
+
+	if(strMessage == nil)
+		return;
+
+	@try
 	{
-		case HB_START:
-			strMessage = @"SE:HB";
-			break;
-		case HB_STOP:
-			strMessage = @"EE:HB";
-			break;
-		case RA_START:
-			strMessage = @"SE:RA";
-			break;
-		case RA_STOP:
-			strMessage = @"EE:RA";
-			break;
-		case WK_START:
-			strMessage = @"SE:WK";
-			break;
-		case WK_STOP:
-			strMessage = @"EE:WK";
-			break;
-		case HT_LEFT_START:
-			strMessage = @"SE:HTL";
-			break;
-		case HT_LEFT_STOP:
-			strMessage = @"EE:HTL";
-			break;
-		case HT_RIGHT_START:
-			strMessage = @"SE:HTR";
-			break;
-		case HT_RIGHT_STOP:
-			strMessage = @"EE:HTR";
-			break;
-		case SPEEDING_START:
-			strMessage = @"SE:SP";
-			break;
-		case SPEEDING_STOP:
-			strMessage = @"EE:SP";
-			break;
-		case VEHICLE_ENTRY_START:
-			strMessage = @"SE:VE";
-			break;
-		case VEHICLE_ENTRY_STOP:
-			strMessage = @"EE:VE";
-			break;
-		case VEHICLE_EXIT_START:
-			strMessage = @"SE:VX";
-			break;
-		case VEHICLE_EXIT_STOP:
-			strMessage = @"EE:VX";
-			break;
-		default:
-			return;
+		NSData *msgData = [strMessage dataUsingEncoding:NSUTF8StringEncoding];
+		
+		[periphMgr updateValue:msgData forCharacteristic:self.salEventNotification onSubscribedCentrals:nil];
 	}
-	
-	NSData *msgData = [strMessage dataUsingEncoding:NSUTF8StringEncoding];
-	
-	[periphMgr updateValue:msgData forCharacteristic:self.salEventNotification onSubscribedCentrals:nil];
+	@catch(NSException *exception)
+	{}
+	@finally
+	{}
 }
 
 @end
