@@ -12,6 +12,7 @@
 
 @interface HelperMethods : NSObject
 
++(BOOL)stringToDouble:(NSString *)strVal derivedDoubleValue:(double *)dVal;
 +(NSString *)notificationEnumToString:(NOTIFICATION_EVENTS)eNotificationEvent;
 
 @end

@@ -11,6 +11,38 @@
 
 @implementation HelperMethods
 
++(BOOL)stringToDouble:(NSString *)strVal derivedDoubleValue:(double *)dVal
+{
+	BOOL bStat = TRUE;
+	
+	double dCalcVal = 0.0;
+	
+	if( (strVal == nil) || (strVal.length <= 0) )
+		return FALSE;
+	
+	@try
+	{
+		strVal = [strVal stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		strVal = [strVal stringByReplacingOccurrencesOfString:@" " withString:@""];
+		
+		NSScanner* scan = [NSScanner scannerWithString:strVal];
+		
+		bStat &= ([scan scanDouble:&dCalcVal] && [scan isAtEnd]);
+		bStat &= (dCalcVal > 0.0);
+	}//End try
+	@catch(NSException *exception)
+	{
+		dCalcVal = 0.0;
+		bStat = FALSE;
+		NSLog(@"Exception in \"stringToInt\" - %@", exception.debugDescription);
+	}//End catch
+	
+	*dVal = dCalcVal;
+	
+	return bStat;
+}//End
+
+
 +(NSString *)notificationEnumToString:(NOTIFICATION_EVENTS)eNotificationEvent
 {
 	NSString *strMessage = nil;

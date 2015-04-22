@@ -9,6 +9,10 @@
 #import "ViewController.h"
 #import "CPeripheralManager.h"
 
+#import "RoadConditionsView.h"
+#import "VehicleEnvironmentView.h"
+#import "WeatherEnvironmentView.h"
+
 static NSString * const STOP_HB_TEXT = @"Stop HB";
 static NSString * const START_HB_TEXT = @"Start HB";
 
@@ -57,6 +61,10 @@ static const short ICYROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE = 11;
 @interface ViewController ()
 	@property(nonatomic ,strong) CPeripheralManager *periphMgr;
 
+	@property(nonatomic ,strong) RoadConditionsView *roadConditionsView;
+	@property(nonatomic ,strong) VehicleEnvironmentView *vehicleEnvironmentView;
+	@property(nonatomic ,strong) WeatherEnvironmentView *weatherEnvironmentView;
+
 	-(void)handleEventHB:(UIButton *)btn;//Hard-brake
 	-(void)handleEventRA:(UIButton *)btn;//Rapid Accel
 	-(void)handleEventVE:(UIButton *)btn;//Veh Entry
@@ -78,6 +86,48 @@ static const short ICYROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE = 11;
 @implementation ViewController
 
 @synthesize periphMgr = _periphMgr;
+
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+
+	[self layoutConditionViews];
+}
+
+-(RoadConditionsView *)roadConditionsView
+{
+	if(_roadConditionsView == nil)
+	{
+		_roadConditionsView = [[RoadConditionsView alloc]init];
+		_roadConditionsView.translatesAutoresizingMaskIntoConstraints = FALSE;
+		[self.conditionViewsParentScrollView addSubview:_roadConditionsView];
+	}
+	
+	return _roadConditionsView;
+}
+-(VehicleEnvironmentView *)vehicleEnvironmentView
+{
+	if(_vehicleEnvironmentView == nil)
+	{
+		_vehicleEnvironmentView = [[VehicleEnvironmentView alloc]init];
+		_vehicleEnvironmentView.translatesAutoresizingMaskIntoConstraints = FALSE;
+		[self.conditionViewsParentScrollView addSubview:_vehicleEnvironmentView];
+	}
+	
+	return _vehicleEnvironmentView;
+}
+
+-(WeatherEnvironmentView *)weatherEnvironmentView
+{
+	if(_weatherEnvironmentView == nil)
+	{
+		_weatherEnvironmentView = [[WeatherEnvironmentView alloc]init];
+		_weatherEnvironmentView.translatesAutoresizingMaskIntoConstraints = FALSE;
+		[self.conditionViewsParentScrollView addSubview:_weatherEnvironmentView];
+	}
+
+	return _weatherEnvironmentView;
+}
 
 -(IBAction)onAdvertise:(UIButton *)sender
 {
@@ -322,6 +372,76 @@ static const short ICYROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE = 11;
 		[btn setTitle:START_SNOWYROAD_TEXT forState:UIControlStateNormal];
 		
 		[self configureButtonBackGround:SNOWROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE isStart:FALSE];
+	}
+}
+
+-(void)layoutConditionViews
+{
+	[self layoutConditionView:nil viewToAdd:self.roadConditionsView];
+	[self layoutConditionView:self.roadConditionsView viewToAdd:self.weatherEnvironmentView];
+	[self layoutConditionView:self.weatherEnvironmentView viewToAdd:self.vehicleEnvironmentView];
+}
+
+-(void)layoutConditionView:(UIView *)leadingView viewToAdd:(UIView *)viewAddingIn
+{
+	UIView *theLeadingView = leadingView;
+
+	if(theLeadingView == nil)
+	{
+		theLeadingView = self.conditionViewsParentScrollView;
+
+		[self.conditionViewsParentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:viewAddingIn
+																												  attribute:NSLayoutAttributeLeading
+																												  relatedBy:NSLayoutRelationEqual
+																													  toItem:self.conditionViewsParentScrollView
+																												  attribute:NSLayoutAttributeLeading
+																												 multiplier:1.0
+																													constant:0.0]];
+	}
+	else
+	{
+		[self.conditionViewsParentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:viewAddingIn
+																												  attribute:NSLayoutAttributeLeading
+																												  relatedBy:NSLayoutRelationEqual
+																													  toItem:theLeadingView
+																												  attribute:NSLayoutAttributeTrailing
+																												 multiplier:1.0
+																													constant:0.0]];
+	}
+
+	[self.conditionViewsParentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:viewAddingIn
+																											  attribute:NSLayoutAttributeTop
+																											  relatedBy:NSLayoutRelationEqual
+																												  toItem:self.conditionViewsParentScrollView
+																											  attribute:NSLayoutAttributeTop
+																											 multiplier:1.0 constant:0.0]];
+	
+	[self.conditionViewsParentScrollView addConstraint: [NSLayoutConstraint constraintWithItem:viewAddingIn
+																												attribute:NSLayoutAttributeWidth
+																												relatedBy:NSLayoutRelationEqual
+																													toItem:self.conditionViewsParentScrollView
+																												attribute:NSLayoutAttributeWidth
+																											  multiplier:1.0
+																												 constant:0.0]]; //]self.conditionViewsParentScrollView.bounds.size.width]];
+
+	[self.conditionViewsParentScrollView addConstraint: [NSLayoutConstraint constraintWithItem:viewAddingIn
+																												attribute:NSLayoutAttributeHeight
+																												relatedBy:NSLayoutRelationEqual
+																													toItem:self.conditionViewsParentScrollView
+																												attribute:NSLayoutAttributeHeight
+																											  multiplier:1.0
+																												 constant:0.0]];
+
+	if(viewAddingIn == self.vehicleEnvironmentView)
+	{
+		[self.conditionViewsParentScrollView addConstraint: [NSLayoutConstraint constraintWithItem:viewAddingIn
+																													attribute:NSLayoutAttributeTrailing
+																													relatedBy:NSLayoutRelationEqual
+																														toItem:self.conditionViewsParentScrollView
+																													attribute:NSLayoutAttributeTrailing
+																												  multiplier:1.0
+																													 constant:0.0]];
+		
 	}
 }
 
