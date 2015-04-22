@@ -445,7 +445,6 @@ static const short ICYROAD_BUTTON_BACKGROUND_IMG_TAG_VALUE = 11;
 	}
 }
 
-
 -(void)configureButtonBackGround:(short)sBGImageTagIndex isStart:(BOOL)bIsStartOrStop
 {
 	UIView *vwBtnBG = [self.view viewWithTag:sBGImageTagIndex];

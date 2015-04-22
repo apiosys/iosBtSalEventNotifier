@@ -32,6 +32,8 @@
 		05DDE47E1A35023400EAB40E /* CEventNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE47C1A35023400EAB40E /* CEventNotificationService.m */; };
 		05DDE4811A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */; };
 		05DDE4821A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */; };
+		05ECC9B81AE82DEB000D743F /* StartStopEventsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ECC9B71AE82DEB000D743F /* StartStopEventsView.m */; };
+		05ECC9BA1AE82E19000D743F /* StartStopEventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05ECC9B91AE82E19000D743F /* StartStopEventsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,9 @@
 		05DDE47C1A35023400EAB40E /* CEventNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CEventNotificationService.m; path = SALNotifier/PeripheralBT/CEventNotificationService.m; sourceTree = "<group>"; };
 		05DDE47F1A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CEventNotificationStartStopCharacteristic.h; path = SALNotifier/PeripheralBT/CEventNotificationStartStopCharacteristic.h; sourceTree = "<group>"; };
 		05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CEventNotificationStartStopCharacteristic.m; path = SALNotifier/PeripheralBT/CEventNotificationStartStopCharacteristic.m; sourceTree = "<group>"; };
+		05ECC9B61AE82DEB000D743F /* StartStopEventsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartStopEventsView.h; path = SALNotifier/EventMarkingsView/StartStopEventsView.h; sourceTree = "<group>"; };
+		05ECC9B71AE82DEB000D743F /* StartStopEventsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartStopEventsView.m; path = SALNotifier/EventMarkingsView/StartStopEventsView.m; sourceTree = "<group>"; };
+		05ECC9B91AE82E19000D743F /* StartStopEventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StartStopEventsView.xib; path = SALNotifier/EventMarkingsView/StartStopEventsView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +161,7 @@
 		05DDE43A1A34FCA100EAB40E = {
 			isa = PBXGroup;
 			children = (
+				05ECC9B51AE82D85000D743F /* EventMarkingsViews */,
 				05A650FA1AD2A6C800E295F0 /* AdditionalConditionSettingsViews */,
 				05A9407D1A72973D002C1DAC /* Helpers */,
 				05DDE4721A35002900EAB40E /* PeripheralManager */,
@@ -236,6 +242,16 @@
 				05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */,
 			);
 			name = PeripheralManager;
+			sourceTree = "<group>";
+		};
+		05ECC9B51AE82D85000D743F /* EventMarkingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				05ECC9B61AE82DEB000D743F /* StartStopEventsView.h */,
+				05ECC9B71AE82DEB000D743F /* StartStopEventsView.m */,
+				05ECC9B91AE82E19000D743F /* StartStopEventsView.xib */,
+			);
+			name = EventMarkingsViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +343,7 @@
 				05DDE4551A34FCA100EAB40E /* Main.storyboard in Resources */,
 				05DDE45A1A34FCA100EAB40E /* LaunchScreen.xib in Resources */,
 				05A6510C1AD2B28E00E295F0 /* RoadConditionsView.xib in Resources */,
+				05ECC9BA1AE82E19000D743F /* StartStopEventsView.xib in Resources */,
 				05A651061AD2ACDA00E295F0 /* WeatherEnvironmentView.xib in Resources */,
 				05DDE4571A34FCA100EAB40E /* Images.xcassets in Resources */,
 				05A651011AD2A7F400E295F0 /* VehicleEnvironmentView.xib in Resources */,
@@ -348,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A940841A72A26B002C1DAC /* HelperMethods.m in Sources */,
+				05ECC9B81AE82DEB000D743F /* StartStopEventsView.m in Sources */,
 				05DDE4811A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */,
 				05DDE44F1A34FCA100EAB40E /* SALNotifier.xcdatamodeld in Sources */,
 				05A651041AD2AC6F00E295F0 /* WeatherEnvironmentView.m in Sources */,
