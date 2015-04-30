@@ -14,17 +14,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Window Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ui-Qx-X5w">
-                    <rect key="frame" x="123" y="8" width="129" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="J7b-ZG-Ch8">
-                    <rect key="frame" x="8" y="37" width="359" height="29"/>
+                    <rect key="frame" x="8" y="29" width="359" height="29"/>
                     <segments>
                         <segment title="up"/>
                         <segment title="Down"/>
@@ -36,13 +30,13 @@
                     </connections>
                 </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juM-XF-DdA">
-                    <rect key="frame" x="165" y="79" width="45" height="21"/>
+                    <rect key="frame" x="165" y="67" width="45" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XBi-z1-icN">
-                    <rect key="frame" x="8" y="105" width="359" height="29"/>
+                    <rect key="frame" x="8" y="92" width="359" height="29"/>
                     <segments>
                         <segment title="Loud"/>
                         <segment title="Medium"/>
@@ -54,13 +48,13 @@
                     </connections>
                 </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number Of People In Car" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn4-5y-ZJM">
-                    <rect key="frame" x="8" y="147" width="194" height="21"/>
+                    <rect key="frame" x="8" y="130" width="194" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-Kj-zAs">
-                    <rect key="frame" x="8" y="176" width="97" height="30"/>
+                    <rect key="frame" x="8" y="155" width="97" height="30"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                     </accessibility>
@@ -72,24 +66,30 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vxs-0c-gHP">
-                    <rect key="frame" x="123" y="176" width="94" height="29"/>
+                    <rect key="frame" x="123" y="155" width="94" height="29"/>
                 </stepper>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Window Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ui-Qx-X5w">
+                    <rect key="frame" x="123" y="4" width="129" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="XBi-z1-icN" firstAttribute="top" secondItem="juM-XF-DdA" secondAttribute="bottom" constant="5" id="2QJ-xD-dWn"/>
+                <constraint firstItem="XBi-z1-icN" firstAttribute="top" secondItem="juM-XF-DdA" secondAttribute="bottom" constant="4" id="2QJ-xD-dWn"/>
                 <constraint firstItem="bn4-5y-ZJM" firstAttribute="leading" secondItem="pbc-Kj-zAs" secondAttribute="leading" id="3m6-dX-Meg"/>
                 <constraint firstItem="XBi-z1-icN" firstAttribute="leading" secondItem="bn4-5y-ZJM" secondAttribute="leading" id="7ad-JZ-Xw8"/>
                 <constraint firstAttribute="centerX" secondItem="1ui-Qx-X5w" secondAttribute="centerX" id="8dc-NZ-Nig"/>
-                <constraint firstItem="pbc-Kj-zAs" firstAttribute="top" secondItem="bn4-5y-ZJM" secondAttribute="bottom" constant="8" id="CAs-5u-kRr"/>
-                <constraint firstItem="J7b-ZG-Ch8" firstAttribute="top" secondItem="1ui-Qx-X5w" secondAttribute="bottom" constant="8" id="Db6-s2-LRO"/>
+                <constraint firstItem="pbc-Kj-zAs" firstAttribute="top" secondItem="bn4-5y-ZJM" secondAttribute="bottom" constant="4" id="CAs-5u-kRr"/>
+                <constraint firstItem="J7b-ZG-Ch8" firstAttribute="top" secondItem="1ui-Qx-X5w" secondAttribute="bottom" constant="4" id="Db6-s2-LRO"/>
                 <constraint firstItem="Vxs-0c-gHP" firstAttribute="leading" secondItem="pbc-Kj-zAs" secondAttribute="trailing" constant="18" id="Dc5-ka-OkB"/>
-                <constraint firstItem="juM-XF-DdA" firstAttribute="top" secondItem="J7b-ZG-Ch8" secondAttribute="bottom" constant="14" id="IOA-9U-qCL"/>
+                <constraint firstItem="juM-XF-DdA" firstAttribute="top" secondItem="J7b-ZG-Ch8" secondAttribute="bottom" constant="10" id="IOA-9U-qCL"/>
                 <constraint firstItem="XBi-z1-icN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="NYp-mJ-YkQ"/>
-                <constraint firstItem="bn4-5y-ZJM" firstAttribute="top" secondItem="XBi-z1-icN" secondAttribute="bottom" constant="14" id="OA4-jy-y5e"/>
+                <constraint firstItem="bn4-5y-ZJM" firstAttribute="top" secondItem="XBi-z1-icN" secondAttribute="bottom" constant="10" id="OA4-jy-y5e"/>
                 <constraint firstAttribute="trailing" secondItem="J7b-ZG-Ch8" secondAttribute="trailing" constant="8" id="OaH-H3-zIp"/>
                 <constraint firstItem="J7b-ZG-Ch8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="OpO-dG-t1L"/>
-                <constraint firstItem="1ui-Qx-X5w" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="mFK-o7-9FR"/>
+                <constraint firstItem="1ui-Qx-X5w" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="mFK-o7-9FR"/>
                 <constraint firstAttribute="trailing" secondItem="XBi-z1-icN" secondAttribute="trailing" constant="8" id="mFR-ud-HSg"/>
                 <constraint firstAttribute="centerX" secondItem="juM-XF-DdA" secondAttribute="centerX" id="t7d-hp-3lv"/>
                 <constraint firstItem="pbc-Kj-zAs" firstAttribute="centerY" secondItem="Vxs-0c-gHP" secondAttribute="centerY" constant="0.5" id="tDA-6d-nGD"/>
@@ -98,6 +98,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="397.5" y="333"/>
         </view>
     </objects>
 </document>

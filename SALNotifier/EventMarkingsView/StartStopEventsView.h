@@ -10,4 +10,6 @@
 
 @interface StartStopEventsView : UIView
 	@property(nonatomic, weak) IBOutlet UIView *backingView;
+
+	-(void)configureButtonFrames:(UIView *)topView;
 @end

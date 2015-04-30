@@ -43,6 +43,8 @@ static NSString * const STOP_SNOWYROAD_TEXT = @"Stop Snow Road";
 static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
 
 @interface StartStopEventsView()
+	@property(nonatomic, strong) UIColor *notSelectedBorderColor;
+
 	-(IBAction)onStartStopEvent:(UIButton *)sender;
 @end
 
@@ -89,8 +91,47 @@ static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
 	[self addSubview:self.backingView];
 
 	self.layer.borderColor = [UIColor blackColor].CGColor;
-	
+
 	return self;
+}
+
+-(void)configureButtonFrames:(UIView *)topView
+{
+	if(topView == nil)
+		topView = self.backingView;
+
+	for(UIView *vw in topView.subviews)
+	{
+		if([vw isKindOfClass:[UIScrollView class]] == TRUE)
+		{
+			[self configureButtonFrames:vw];
+			continue;
+		}
+		
+		UIButton *btn = (UIButton *)vw;
+		
+		if( ([btn.restorationIdentifier compare:@"startStopHbButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopRAButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopWalkingButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopSpeedingButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopVehEntryButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopVehicleExitButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopHardTurnLeftButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopHardTurnRightButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopIceRoadButton"] == NSOrderedSame) ||
+				([btn.restorationIdentifier compare:@"startStopSnowRoadButton"] == NSOrderedSame) )
+		{
+			[self configureButtonBackGround:btn isStart:FALSE];
+		}
+	}
+}
+
+-(UIColor *)notSelectedBorderColor
+{
+	if(_notSelectedBorderColor == nil)
+		_notSelectedBorderColor = [UIColor colorWithRed:206.0 / 255.0 green:206.0 / 255.0 blue:206.0 / 255.0 alpha:1.0];
+
+	return _notSelectedBorderColor;
 }
 
 -(IBAction)onStartStopEvent:(UIButton *)sender
@@ -323,16 +364,12 @@ static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
 {
 	btn.layer.cornerRadius = 10.0f;
 	btn.layer.masksToBounds = TRUE;
+	btn.layer.borderWidth = 5.0f;
 	
 	if(bIsStartOrStop == TRUE)//If you're starting
 		btn.layer.borderColor = [[UIColor redColor]CGColor];
 	else
-		btn.layer.borderColor = [[UIColor colorWithRed:206.0 / 255.0 green:206.0 / 255.0 blue:206.0 / 255.0 alpha:1.0]CGColor];
-	
-	btn.layer.borderWidth = 5.0f;
+		btn.layer.borderColor = self.notSelectedBorderColor.CGColor;
 }
-
-
-
 
 @end
