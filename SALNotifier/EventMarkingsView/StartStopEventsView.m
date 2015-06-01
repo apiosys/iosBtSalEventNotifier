@@ -107,7 +107,7 @@ static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
 			[self configureButtonFrames:vw];
 			continue;
 		}
-		
+
 		UIButton *btn = (UIButton *)vw;
 		
 		if( ([btn.restorationIdentifier compare:@"startStopHbButton"] == NSOrderedSame) ||

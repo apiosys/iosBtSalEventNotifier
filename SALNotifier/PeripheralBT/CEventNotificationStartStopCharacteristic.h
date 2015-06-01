@@ -15,5 +15,8 @@
 
 	@property(nonatomic, readonly) CBMutableCharacteristic *theStartStopCharacteristic;
 
+	-(void)updateServiceValueMessage:(NSString *)notificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr;
 	-(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr;
+
+
 @end

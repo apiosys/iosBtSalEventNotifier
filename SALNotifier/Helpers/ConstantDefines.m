@@ -15,6 +15,11 @@
 	return @":";
 }
 
++(NSString *)markConditionTag
+{
+	return @"MC";
+}
+
 +(NSString *)endEventTag
 {
 	return @"EE";
@@ -77,12 +82,12 @@
 
 +(NSString *)flatTireTag
 {
-	return @"flt";
+	return @"FLT";
 }
 
 +(NSString *)barometricTag
 {
-	return @"bar";
+	return @"BAR";
 }
 
 +(NSString *)windowDownTag
@@ -92,22 +97,63 @@
 
 +(NSString *)rumbleStripsTag
 {
-	return @"rbs";
+	return @"RBS";
 }
 
 +(NSString *)phoneHandlingGenericTag
 {
-	return @"phg";
+	return @"PHG";
 }
 
 +(NSString *)phoneHandlingTextingTag
 {
-	return @"phx";
+	return @"PHX";
 }
 
 +(NSString *)phoneHandlingTalkingTag
 {
-	return @"phk";
+	return @"PHK";
+}
+
+//Road Condition Markers
++(NSString *)dryRoadTag
+{
+	return @"DRY";
+}
+
++(NSString *)wetRoadTag
+{
+	return @"WET";
+}
+
++(NSString *)roughRoadTag
+{
+	return @"RUF";
+}
+
++(NSString *)bumbpyRoadTag
+{
+	return @"BPY";
+}
+
++(NSString *)pavedRoadTag
+{
+	return @"PVD";
+}
+
++(NSString *)gravelRoadTag
+{
+	return @"GVL";
+}
+
++(NSString *)floodedRoadTag
+{
+	return @"FLD";
+}
+
++(NSString *)smoothRoadTag
+{
+	return @"SMH";
 }
 
 +(NSString *)icyRoadTag
@@ -118,6 +164,64 @@
 +(NSString *)snowyRoadTag
 {
 	return @"SNW";
+}
+
++(NSString *)degreesUnitsTag:(BOOL)bFahrenheit
+{
+	return (bFahrenheit == TRUE) ? @"FHR" : @"CEL";
+}
+
++(NSString *)precipitationVolumeTag:(int)volume
+{
+	switch (volume)
+	{
+		case 0:
+			return @"LT";
+		case 1:
+			return @"MD";
+		case 2:
+			return @"HV";
+		default:
+			break;
+	}
+	
+	return @"UKN";
+}
+
++(NSString *)cloudCoverageTag:(int)coverage
+{
+	switch (coverage)
+	{
+		case 0:
+			return @"CLR";
+		case 1:
+			return @"PSU";
+		case 2:
+			return @"OVC";
+		case 3:
+			return @"HVY";
+		default:
+			break;
+	}
+	
+	return @"UNK";
+}
+
++(NSString *)precipitationTag:(int)percipitationType
+{
+	switch (percipitationType)
+	{
+		case 0:
+			return @"RAI";
+		case 1:
+			return @"SNW";
+		case 2:
+			return @"SLT";
+		default:
+			break;
+	}
+	
+	return @"UNK";
 }
 
 @end

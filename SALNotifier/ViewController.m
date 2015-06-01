@@ -21,6 +21,7 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 	@property(nonatomic, weak) IBOutlet UIButton *btnStartStopAdvertising;
 
 	@property(nonatomic ,strong) CPeripheralManager *periphMgr;
+	@property (weak, nonatomic) IBOutlet UIView *theLineSeparatorView;
 
 	@property(nonatomic ,strong) RoadConditionsView *roadConditionsView;
 	@property(nonatomic, strong) StartStopEventsView *startStopEventsView;
@@ -101,6 +102,11 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 	return _weatherEnvironmentView;
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	NSLog(@"Touches");
+}
+
 -(IBAction)onAdvertise:(UIButton *)sender
 {
 	if([sender.currentTitle compare:START_ADVERTISING_TEXT] == NSOrderedSame)//Starting advertising
@@ -153,9 +159,9 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 	[self.eventViewParentView addConstraint:[NSLayoutConstraint constraintWithItem:self.startStopEventsView
 																								attribute:NSLayoutAttributeBottom
 																								relatedBy:NSLayoutRelationEqual
-																									toItem:self.btnStartStopAdvertising
+																									toItem:self.theLineSeparatorView
 																								attribute:NSLayoutAttributeTop
-																							  multiplier:1.0 constant:-8.0]];
+																							  multiplier:1.0 constant:0.0]];
 }
 
 -(void)layoutConditionView:(UIView *)leadingView viewToAdd:(UIView *)viewAddingIn
@@ -235,8 +241,12 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView//Called when scroll view grinds to a halt
 {
-	int offset = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+	//Due to some strangness with 6-plus devices not pinning constraints to the edge
+	int ScrollViewOffset = scrollView.contentOffset.x - (((int)scrollView.contentOffset.x) % 100);
+	int ScreenWidth = [UIScreen mainScreen].bounds.size.width - ((int)([UIScreen mainScreen].bounds.size.width) % 100);
 
+	int offset = ScrollViewOffset / ScreenWidth;
+	
 	self.pageIndicator.currentPage = offset;
 }
 

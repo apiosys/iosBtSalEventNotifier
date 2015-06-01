@@ -7,6 +7,16 @@
 */
 
 #import "RoadConditionsView.h"
+#import "ConstantDefines.h"
+#import "CPeripheralManager.h"
+
+@interface RoadConditionsView()
+	@property (weak, nonatomic) IBOutlet UISegmentedControl *roadMaintSegCtrl;
+	@property (weak, nonatomic) IBOutlet UISegmentedControl *roadConditionSegCtrl;
+	@property (weak, nonatomic) IBOutlet UISegmentedControl *weatherRoadEffectSegCtrl;
+
+	-(IBAction)onRoadConditionChange:(UISegmentedControl *)sender;
+@end
 
 @implementation RoadConditionsView
 {
@@ -54,6 +64,85 @@
 	self.layer.borderColor = [UIColor blackColor].CGColor;
 
 	return self;
+}
+
+-(IBAction)onRoadConditionChange:(UISegmentedControl *)sender
+{
+	if(sender == self.roadConditionSegCtrl)
+		[self onRoadPavementChange];
+	else if(sender == self.roadMaintSegCtrl)
+		[self onRoadmaintenanceChange];
+	else if(sender == self.weatherRoadEffectSegCtrl)
+		[self onRoadWeatherAffectChange];
+}
+
+-(void)onRoadPavementChange
+{
+	NSString *roadConditionMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+
+	switch (self.roadConditionSegCtrl.selectedSegmentIndex)
+	{
+		case 0:
+			roadConditionMessage = [roadConditionMessage stringByAppendingString:[ConstantDefines pavedRoadTag]];
+			break;
+		case 1:
+			roadConditionMessage = [roadConditionMessage stringByAppendingString:[ConstantDefines gravelRoadTag]];
+			break;
+		default:
+			roadConditionMessage = [roadConditionMessage stringByAppendingString:@"UKN"];
+			break;
+	}
+
+	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:roadConditionMessage];
+}
+
+-(void)onRoadmaintenanceChange
+{
+	NSString *roadMaintenanceMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+
+	switch (self.roadMaintSegCtrl.selectedSegmentIndex)
+	{
+		case 0:
+			roadMaintenanceMessage = [roadMaintenanceMessage stringByAppendingString:[ConstantDefines smoothRoadTag]];
+			break;
+		case 1:
+			roadMaintenanceMessage = [roadMaintenanceMessage stringByAppendingString:[ConstantDefines roughRoadTag]];
+			break;
+		case 2:
+			roadMaintenanceMessage = [roadMaintenanceMessage stringByAppendingString:[ConstantDefines bumbpyRoadTag]];
+			break;
+		default:
+			roadMaintenanceMessage = [roadMaintenanceMessage stringByAppendingString:@"UKN"];
+			break;
+	}
+	
+	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:roadMaintenanceMessage];
+}
+
+-(void)onRoadWeatherAffectChange
+{
+	NSString *roadWeatherConditionsMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+
+	switch (self.weatherRoadEffectSegCtrl.selectedSegmentIndex)
+	{
+		case 0:
+			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines dryRoadTag]];
+			break;
+		case 1:
+			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines wetRoadTag]];
+			break;
+		case 2:
+			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines floodedRoadTag]];
+			break;
+		case 3:
+			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines snowyRoadTag]];
+			break;
+		default:
+			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines icyRoadTag]];//Reserved and not used right now.
+			break;
+	}
+
+	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:roadWeatherConditionsMessage];
 }
 
 @end

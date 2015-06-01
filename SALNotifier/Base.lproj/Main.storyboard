@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="V0i-0W-0uN">
                                 <rect key="frame" x="-19" y="-18" width="39" height="37"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="HRK-CK-zNe"/>
                                 </constraints>
@@ -50,33 +50,64 @@
                                             <action selector="onAdvertise:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Twc-7j-Pht"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaB-al-cV9">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="E9t-DR-YZh"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="E9t-DR-YZh"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="E9t-DR-YZh"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="prL-0x-GCK" secondAttribute="trailing" constant="16" id="1uX-33-ggD"/>
                                     <constraint firstItem="prL-0x-GCK" firstAttribute="leading" secondItem="K5D-eE-4IZ" secondAttribute="leading" constant="16" id="9Wg-e1-EA7"/>
+                                    <constraint firstAttribute="trailing" secondItem="kaB-al-cV9" secondAttribute="trailing" id="SuU-aO-vNC"/>
                                     <constraint firstAttribute="centerX" secondItem="prL-0x-GCK" secondAttribute="centerX" id="cgJ-Dz-hjz"/>
-                                    <constraint firstAttribute="bottom" secondItem="prL-0x-GCK" secondAttribute="bottom" constant="8" id="pSL-q9-4CX"/>
+                                    <constraint firstItem="kaB-al-cV9" firstAttribute="leading" secondItem="K5D-eE-4IZ" secondAttribute="leading" id="fY3-iE-8Dw"/>
+                                    <constraint firstAttribute="centerX" secondItem="kaB-al-cV9" secondAttribute="centerX" id="oJY-Du-T34"/>
+                                    <constraint firstAttribute="bottom" secondItem="prL-0x-GCK" secondAttribute="bottom" constant="5" id="pSL-q9-4CX"/>
+                                    <constraint firstItem="prL-0x-GCK" firstAttribute="top" secondItem="kaB-al-cV9" secondAttribute="bottom" constant="5" id="wMh-6g-jkk"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="prL-0x-GCK"/>
+                                        <exclude reference="kaB-al-cV9"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="1uX-33-ggD"/>
                                         <exclude reference="9Wg-e1-EA7"/>
                                         <exclude reference="cgJ-Dz-hjz"/>
                                         <exclude reference="pSL-q9-4CX"/>
+                                        <exclude reference="wMh-6g-jkk"/>
+                                        <exclude reference="SuU-aO-vNC"/>
+                                        <exclude reference="fY3-iE-8Dw"/>
+                                        <exclude reference="oJY-Du-T34"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="prL-0x-GCK"/>
+                                        <include reference="kaB-al-cV9"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="1uX-33-ggD"/>
                                         <include reference="9Wg-e1-EA7"/>
                                         <include reference="cgJ-Dz-hjz"/>
                                         <include reference="pSL-q9-4CX"/>
+                                        <include reference="wMh-6g-jkk"/>
+                                        <include reference="SuU-aO-vNC"/>
+                                        <include reference="fY3-iE-8Dw"/>
+                                        <include reference="oJY-Du-T34"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -163,6 +194,7 @@
                         <outlet property="conditionViewsParentScrollView" destination="gmx-UM-hVZ" id="An3-De-Ozf"/>
                         <outlet property="eventViewParentView" destination="K5D-eE-4IZ" id="Oar-8l-AMl"/>
                         <outlet property="pageIndicator" destination="V0i-0W-0uN" id="PSO-g0-b23"/>
+                        <outlet property="theLineSeparatorView" destination="kaB-al-cV9" id="dRF-3D-xOY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

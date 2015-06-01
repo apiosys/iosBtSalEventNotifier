@@ -18,5 +18,6 @@
 -(void)advertiseTheServices;
 -(void)stopAdvertisingTheServices;
 -(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal;
+-(void)updateServiceValueWithMessage:(NSString *)messageNotificationVal;
 
 @end

@@ -61,7 +61,6 @@
 	return self;
 }
 
-
 -(void)advertiseTheServices
 {
 	NSArray *arrServiceUUIDsToAdvertise = [NSArray arrayWithObjects:[CBUUID UUIDWithString:self.notificationService.strServiceUUID], nil];
@@ -76,12 +75,15 @@
 	[self.nativePeripheralManager stopAdvertising];
 }
 
-
 -(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal
 {
 	[self.notificationService updateServiceValue:eNotificationVal thePeripheralManager:self.nativePeripheralManager];
 }
 
+-(void)updateServiceValueWithMessage:(NSString *)messageNotificationVal
+{
+	[self.notificationService updateServiceMessageValue:messageNotificationVal thePeripheralManager:self.nativePeripheralManager];
+}
 
 #pragma mark - Peripheral manager delegate calls
 

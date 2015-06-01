@@ -16,5 +16,6 @@
 	@property(nonatomic, readonly) NSString *strServiceUUID;
 	@property(nonatomic, readonly) CBMutableService *theNotificationService;
 
+	-(void)updateServiceMessageValue:(NSString *)notificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr;
 	-(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr;
 @end

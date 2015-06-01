@@ -64,6 +64,20 @@
 	return _notificationServiceUUID;
 }
 
+-(void)updateServiceMessageValue:(NSString *)notificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr
+{
+	@try
+	{
+		[self.startStopCharacteristic updateServiceValueMessage:notificationVal thePeripheralManager:periphMgr];
+	}
+	@catch (NSException *exception)
+	{
+		NSLog(@"Exception updating the characteristic: %@", exception.description);
+	}
+	@finally
+	{}
+}
+
 -(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr
 {
 	@try

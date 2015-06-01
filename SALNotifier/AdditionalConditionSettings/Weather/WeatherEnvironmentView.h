@@ -10,6 +10,4 @@
 
 @interface WeatherEnvironmentView : UIView<UITextFieldDelegate>
 	@property(nonatomic, weak) IBOutlet UIView *backingView;
-
-	@property(nonatomic, weak) IBOutlet UITextField *txtbxTemperature;
 @end

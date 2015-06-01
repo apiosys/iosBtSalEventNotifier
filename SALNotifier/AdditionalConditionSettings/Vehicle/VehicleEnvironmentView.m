@@ -59,12 +59,7 @@
 	
 	if(arrViewsLoaded == nil)
 		NSLog(@"Your Vehicle Environment view may look bad");
-	
-	//--TEST
-	//self.layer.borderColor = [UIColor blackColor].CGColor;
-	//self.layer.borderWidth = 2.0;
-	//--END TEST
-	
+		
 	_intrinsicContentSize = self.bounds.size;
 	
 	//2. Must now add as a sub-view

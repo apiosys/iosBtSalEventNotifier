@@ -11,6 +11,19 @@
 
 @implementation HelperMethods
 
+
++(double)celciusToFahrenheit:(double)dCelcius
+{
+	//Degrees Fahrenheit (°F) is equal to the Degrees Celsius (°C) * 9/5 plus 32:
+	return (dCelcius * 9.0) / 5.0 + 32;
+}
+
++(double)fahrenheitToCelcius:(double)dFahrenheit
+{
+	//Degrees Celsius (°C) is equal to the Degrees Fahrenheit (°F) minus 32, times 5/9:
+	return (dFahrenheit - 32.0) * (5.0/9.0);
+}
+
 +(BOOL)stringToDouble:(NSString *)strVal derivedDoubleValue:(double *)dVal
 {
 	BOOL bStat = TRUE;
@@ -41,7 +54,6 @@
 	
 	return bStat;
 }//End
-
 
 +(NSString *)notificationEnumToString:(NOTIFICATION_EVENTS)eNotificationEvent
 {
