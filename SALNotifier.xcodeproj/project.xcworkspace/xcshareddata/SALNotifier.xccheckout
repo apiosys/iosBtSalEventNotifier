@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A68C52BB-2E84-4604-85B2-C1721568EBE0</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>SALNotifier</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8BE328C2E68D498DFD82BB167CC0AF0AE6E30F11</key>
 		<string>https://github.com/apiosys/iosBtSalEventNotifier.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SALNotifier.xcodeproj/project.xcworkspace</string>
+	<string>SALNotifier.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8BE328C2E68D498DFD82BB167CC0AF0AE6E30F11</key>

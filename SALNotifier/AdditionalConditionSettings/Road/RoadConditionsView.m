@@ -78,7 +78,8 @@
 
 -(void)onRoadPavementChange
 {
-	NSString *roadConditionMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+	NSString *roadConditionMessage = [NSString stringWithFormat:@"%@%@%@%@",
+												 [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines roadConditionTag], [ConstantDefines messageDelimiter]];
 
 	switch (self.roadConditionSegCtrl.selectedSegmentIndex)
 	{
@@ -98,7 +99,8 @@
 
 -(void)onRoadmaintenanceChange
 {
-	NSString *roadMaintenanceMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+	NSString *roadMaintenanceMessage = [NSString stringWithFormat:@"%@%@%@%@",
+													[ConstantDefines markConditionTag], [ConstantDefines messageDelimiter],[ConstantDefines roadMaintenanceTag], [ConstantDefines messageDelimiter]];
 
 	switch (self.roadMaintSegCtrl.selectedSegmentIndex)
 	{
@@ -121,7 +123,8 @@
 
 -(void)onRoadWeatherAffectChange
 {
-	NSString *roadWeatherConditionsMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+	NSString *roadWeatherConditionsMessage = [NSString stringWithFormat:@"%@%@%@%@",
+															[ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines weatherInfluenceTag], [ConstantDefines messageDelimiter]];
 
 	switch (self.weatherRoadEffectSegCtrl.selectedSegmentIndex)
 	{
@@ -135,10 +138,10 @@
 			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines floodedRoadTag]];
 			break;
 		case 3:
-			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines snowyRoadTag]];
+			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines icyRoadTag]];
 			break;
 		default:
-			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines icyRoadTag]];//Reserved and not used right now.
+			roadWeatherConditionsMessage = [roadWeatherConditionsMessage stringByAppendingString:[ConstantDefines snowyRoadTag]];//Reserved and not used right now.
 			break;
 	}
 

@@ -16,6 +16,19 @@
 +(NSString *)startEventTag;
 +(NSString *)markConditionTag;
 
+//Condition Identifiers
++(NSString *)temperatureTag;
++(NSString *)radioVolumeTag;
++(NSString *)percipitationTag;
++(NSString *)cloudCoverageTag;
++(NSString *)roadConditionTag;
++(NSString *)windowPositionTag;
++(NSString *)numberOfPeopleTag;
++(NSString *)roadMaintenanceTag;
++(NSString *)weatherInfluenceTag;
++(NSString *)temperatureUnitsTag;
++(NSString *)percipitationVolumeTag;
+
 //Road Condition Markers
 +(NSString *)dryRoadTag;
 +(NSString *)wetRoadTag;
@@ -49,6 +62,11 @@
  @param: coverage: (0 = Clear) (1 = Partial Sunny) (2 = Overcast) (3 = Heavy clouds)
  */
 +(NSString *)cloudCoverageTag:(int)coverage;
+
+
+//Vehicle Condition
++(NSString *)radionVolume:(int)volume;
++(NSString *)windowPostition:(int)position;
 
 //Event Markers
 +(NSString *)walkingTag;

@@ -70,7 +70,8 @@
 	{
 		NSData *msgData = [notificationVal dataUsingEncoding:NSUTF8StringEncoding];
 		
-		[periphMgr updateValue:msgData forCharacteristic:self.salEventNotification onSubscribedCentrals:nil];
+		if([periphMgr updateValue:msgData forCharacteristic:self.salEventNotification onSubscribedCentrals:nil] == FALSE)
+			NSLog(@"Something went wrong");
 	}
 	@catch(NSException *exception)
 	{}

@@ -98,8 +98,16 @@
 	{
 		[self.temperatureTextfield resignFirstResponder];
 		
-		NSString *degreesMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
-		degreesMessage = [degreesMessage stringByAppendingString:[ConstantDefines degreesUnitsTag:self.degreesSelectionSwitch.on]];
+		NSString *degreesMessage = [NSString stringWithFormat:@"%@%@%@%@",
+											 [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines temperatureTag], [ConstantDefines messageDelimiter]];
+
+		double dTemperature = 0.0;
+		if([HelperMethods stringToDouble:self.temperatureTextfield.text derivedDoubleValue:&dTemperature] == FALSE)
+			dTemperature = 0.0;
+		
+		degreesMessage = [NSString stringWithFormat:@"%@%@%@%.2lf",
+								degreesMessage, [ConstantDefines degreesUnitsTag:self.degreesSelectionSwitch.on],
+								[ConstantDefines messageDelimiter], dTemperature];
 
 		[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:degreesMessage];
 	}
@@ -129,7 +137,9 @@
 
 	self.temperatureTextfield.text = [NSString stringWithFormat:@"%.1lf", dTemperature];
 	
-	NSString *degreesMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+	NSString *degreesMessage = [NSString stringWithFormat:@"%@%@%@%@",
+										 [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines temperatureUnitsTag],[ConstantDefines messageDelimiter]];
+
 	degreesMessage = [degreesMessage stringByAppendingString:[ConstantDefines degreesUnitsTag:sender.on]];
 	
 	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:degreesMessage];
@@ -147,7 +157,8 @@
 
 -(void)onPrecipitationChange
 {
-	NSString *precipitationMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+	NSString *precipitationMessage = [NSString stringWithFormat:@"%@%@%@%@",
+												 [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines percipitationTag],[ConstantDefines messageDelimiter]];
 	
 	precipitationMessage = [precipitationMessage stringByAppendingString:[ConstantDefines precipitationTag:(int)self.precipitationSegCtrl.selectedSegmentIndex]];
 	
@@ -156,7 +167,8 @@
 
 -(void)onPrecipitationVoumeChange
 {
-	NSString *precipitationVolumeMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+	NSString *precipitationVolumeMessage = [NSString stringWithFormat:@"%@%@%@%@",
+														 [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines percipitationVolumeTag], [ConstantDefines messageDelimiter]];
 
 	precipitationVolumeMessage = [precipitationVolumeMessage stringByAppendingString:[ConstantDefines precipitationVolumeTag:(int)self.precipitationVolumeSegCtrl.selectedSegmentIndex]];
 
@@ -165,7 +177,8 @@
 
 -(void)onCloudCoverageChange
 {
-	NSString *cloudCoverageMessage = [NSString stringWithFormat:@"%@%@", [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter]];
+	NSString *cloudCoverageMessage = [NSString stringWithFormat:@"%@%@%@%@",
+												 [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines cloudCoverageTag], [ConstantDefines messageDelimiter]];
 
 	cloudCoverageMessage = [cloudCoverageMessage stringByAppendingString:[ConstantDefines cloudCoverageTag:(int)self.cloudCoverageSegCtrl.selectedSegmentIndex]];
 	

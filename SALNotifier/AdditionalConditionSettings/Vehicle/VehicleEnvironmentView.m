@@ -7,13 +7,12 @@
 */
 
 #import "VehicleEnvironmentView.h"
+#import "ConstantDefines.h"
+#import "CPeripheralManager.h"
 
 @interface VehicleEnvironmentView()
 	@property(nonatomic, weak) IBOutlet UITextField *txtbxNumPeople;
-	@property(nonatomic, weak) IBOutlet UIStepper *stepperNumPeople;
 
-
-	-(IBAction)onNumberPeopleChanged:(UIStepper *)sender;
 	-(IBAction)onRadioVolumeChange:(UISegmentedControl *)sender;
 	-(IBAction)onWindowPositionChanged:(UISegmentedControl *)sender;
 @end
@@ -46,7 +45,8 @@
 	
 	self.layer.borderColor = [UIColor blackColor].CGColor;
 
-	
+	[self configureToolbarOnTopOfKeyboard];
+
 	return self;
 }
 
@@ -67,23 +67,59 @@
 	
 	self.layer.borderColor = [UIColor blackColor].CGColor;
 
+	[self configureToolbarOnTopOfKeyboard];
 	
 	return self;
 }
 
--(IBAction)onNumberPeopleChanged:(UIStepper *)sender
+-(void)configureToolbarOnTopOfKeyboard
 {
-	self.txtbxNumPeople.text = [NSString stringWithFormat:@"%d", (int)sender.value];
+	UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+	numberToolbar.barStyle = UIBarStyleDefault;
+	
+	numberToolbar.items = [NSArray arrayWithObjects:
+								  [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+								  [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+								  [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+								  nil];
+	
+	[numberToolbar sizeToFit];
+	self.txtbxNumPeople.inputAccessoryView = numberToolbar;
+}
+
+-(void)doneWithNumberPad
+{
+	if(self.txtbxNumPeople.isFirstResponder == TRUE)
+	{
+		[self.txtbxNumPeople resignFirstResponder];
+		
+		NSString *numPeople = [NSString stringWithFormat:@"%@%@%@%@",
+									  [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines numberOfPeopleTag], [ConstantDefines messageDelimiter]];
+	
+		numPeople = [numPeople stringByAppendingString:self.txtbxNumPeople.text];
+		
+		[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:numPeople];
+	}
 }
 
 -(IBAction)onRadioVolumeChange:(UISegmentedControl *)sender
 {
-	
+	NSString *radioVolumeMessage = [NSString stringWithFormat:@"%@%@%@%@",
+											  [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines radioVolumeTag], [ConstantDefines messageDelimiter]];
+
+	radioVolumeMessage = [radioVolumeMessage stringByAppendingString:[ConstantDefines radionVolume:(int)sender.selectedSegmentIndex]];
+
+	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:radioVolumeMessage];
 }
 
 -(IBAction)onWindowPositionChanged:(UISegmentedControl *)sender
 {
+	NSString *windowPositionMessage = [NSString stringWithFormat:@"%@%@%@%@",
+												  [ConstantDefines markConditionTag], [ConstantDefines messageDelimiter], [ConstantDefines windowPositionTag], [ConstantDefines messageDelimiter]];
 	
+	windowPositionMessage = [windowPositionMessage stringByAppendingString:[ConstantDefines windowPostition:(int)sender.selectedSegmentIndex]];
+
+	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:windowPositionMessage];
 }
 
 @end

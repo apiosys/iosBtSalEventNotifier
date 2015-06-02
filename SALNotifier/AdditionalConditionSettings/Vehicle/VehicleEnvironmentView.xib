@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VehicleEnvironmentView">
             <connections>
                 <outlet property="backingView" destination="iN0-l3-epB" id="2f2-jJ-X4d"/>
-                <outlet property="stepperNumPeople" destination="Vxs-0c-gHP" id="Inb-9n-Mtx"/>
                 <outlet property="txtbxNumPeople" destination="pbc-Kj-zAs" id="cIt-Ar-fbK"/>
             </connections>
         </placeholder>
@@ -32,7 +31,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juM-XF-DdA">
                     <rect key="frame" x="165" y="67" width="45" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XBi-z1-icN">
@@ -50,10 +49,10 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number Of People In Car" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn4-5y-ZJM">
                     <rect key="frame" x="8" y="130" width="194" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-Kj-zAs">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-Kj-zAs">
                     <rect key="frame" x="8" y="155" width="97" height="30"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -63,15 +62,12 @@
                         <constraint firstAttribute="width" constant="97" id="jZd-qg-1Fi"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
-                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vxs-0c-gHP">
-                    <rect key="frame" x="123" y="155" width="94" height="29"/>
-                </stepper>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Window Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ui-Qx-X5w">
                     <rect key="frame" x="123" y="4" width="129" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -83,7 +79,6 @@
                 <constraint firstAttribute="centerX" secondItem="1ui-Qx-X5w" secondAttribute="centerX" id="8dc-NZ-Nig"/>
                 <constraint firstItem="pbc-Kj-zAs" firstAttribute="top" secondItem="bn4-5y-ZJM" secondAttribute="bottom" constant="4" id="CAs-5u-kRr"/>
                 <constraint firstItem="J7b-ZG-Ch8" firstAttribute="top" secondItem="1ui-Qx-X5w" secondAttribute="bottom" constant="4" id="Db6-s2-LRO"/>
-                <constraint firstItem="Vxs-0c-gHP" firstAttribute="leading" secondItem="pbc-Kj-zAs" secondAttribute="trailing" constant="18" id="Dc5-ka-OkB"/>
                 <constraint firstItem="juM-XF-DdA" firstAttribute="top" secondItem="J7b-ZG-Ch8" secondAttribute="bottom" constant="10" id="IOA-9U-qCL"/>
                 <constraint firstItem="XBi-z1-icN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="NYp-mJ-YkQ"/>
                 <constraint firstItem="bn4-5y-ZJM" firstAttribute="top" secondItem="XBi-z1-icN" secondAttribute="bottom" constant="10" id="OA4-jy-y5e"/>
@@ -92,7 +87,6 @@
                 <constraint firstItem="1ui-Qx-X5w" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="mFK-o7-9FR"/>
                 <constraint firstAttribute="trailing" secondItem="XBi-z1-icN" secondAttribute="trailing" constant="8" id="mFR-ud-HSg"/>
                 <constraint firstAttribute="centerX" secondItem="juM-XF-DdA" secondAttribute="centerX" id="t7d-hp-3lv"/>
-                <constraint firstItem="pbc-Kj-zAs" firstAttribute="centerY" secondItem="Vxs-0c-gHP" secondAttribute="centerY" constant="0.5" id="tDA-6d-nGD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

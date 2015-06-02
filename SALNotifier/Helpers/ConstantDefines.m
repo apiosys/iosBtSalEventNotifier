@@ -30,6 +30,61 @@
 	return @"SE";
 }
 
++(NSString *)temperatureTag
+{
+	return @"TEMP";
+}
+
++(NSString *)radioVolumeTag
+{
+	return @"VOL";
+}
+
++(NSString *)percipitationTag
+{
+	return @"PERCIP";
+}
+
++(NSString *)cloudCoverageTag
+{
+	return @"CLDCOV";
+}
+
++(NSString *)roadConditionTag
+{
+	return @"ROADFINISH";
+}
+
++(NSString *)windowPositionTag
+{
+	return @"WINDOWPOS";
+}
+
++(NSString *)numberOfPeopleTag
+{
+	return @"NUMBERPEOPLE";
+}
+
++(NSString *)roadMaintenanceTag
+{
+	return @"ROADMAINTENANCE";
+}
+
++(NSString *)weatherInfluenceTag
+{
+	return @"WEATHINFLUENCE";
+}
+
++(NSString *)temperatureUnitsTag
+{
+	return @"TEMPUNIT";
+}
+
++(NSString *)percipitationVolumeTag
+{
+	return @"PRECIPVOL";
+}
+
 +(NSString *)hardBrakingTag
 {
 	return @"HB";
@@ -42,12 +97,12 @@
 
 +(NSString *)walkingTag
 {
-	return @"WK";
+	return @"WALK";
 }
 
 +(NSString *)speedingTag
 {
-	return @"SP";
+	return @"SPEED";
 }
 
 +(NSString *)hardLeftTurnTag
@@ -62,37 +117,37 @@
 
 +(NSString *)vehicleExitTag
 {
-	return @"VX";
+	return @"VEHEX";
 }
 
 +(NSString *)vehicleEntryTag
 {
-	return @"VE";
+	return @"VEHENT";
 }
 
 +(NSString *)potholeTag
 {
-	return @"PTH";
+	return @"POTHOLE";
 }
 
 +(NSString *)windowUpTag
 {
-	return @"WUP";
+	return @"WINDOWUP";
 }
 
 +(NSString *)flatTireTag
 {
-	return @"FLT";
+	return @"FLAT";
 }
 
 +(NSString *)barometricTag
 {
-	return @"BAR";
+	return @"BAROMETRIC";
 }
 
 +(NSString *)windowDownTag
 {
-	return @"WDN";
+	return @"WINDOWDOWN";
 }
 
 +(NSString *)rumbleStripsTag
@@ -128,42 +183,77 @@
 
 +(NSString *)roughRoadTag
 {
-	return @"RUF";
+	return @"ROUGH";
 }
 
 +(NSString *)bumbpyRoadTag
 {
-	return @"BPY";
+	return @"BUMPY";
 }
 
 +(NSString *)pavedRoadTag
 {
-	return @"PVD";
+	return @"PAVED";
 }
 
 +(NSString *)gravelRoadTag
 {
-	return @"GVL";
+	return @"GRAVEL";
 }
 
 +(NSString *)floodedRoadTag
 {
-	return @"FLD";
+	return @"FLOODED";
 }
 
 +(NSString *)smoothRoadTag
 {
-	return @"SMH";
+	return @"SMOOTH";
 }
 
 +(NSString *)icyRoadTag
 {
-	return @"ICE";
+	return @"ICY";
 }
 
 +(NSString *)snowyRoadTag
 {
-	return @"SNW";
+	return @"SNOW";
+}
+
++(NSString *)radionVolume:(int)volume
+{
+	switch (volume)
+	{
+		case 0:
+			return @"LOUD";
+		case 1:
+			return @"MED";
+		case 2:
+			return @"LOW";
+		case 3:
+			return @"OFF";
+		default:
+			return @"UKN";
+	}
+}
+
++(NSString *)windowPostition:(int)position
+{
+	switch (position)
+	{
+		case 0:
+			return @"UP";
+		case 1:
+			return @"CRACKED";
+		case 2:
+			return @"HALFWAY";
+		case 3:
+			return @"DOWN";
+		default:
+			return @"UNK";
+			break;
+	}
 }
 
 +(NSString *)degreesUnitsTag:(BOOL)bFahrenheit
@@ -176,11 +266,11 @@
 	switch (volume)
 	{
 		case 0:
-			return @"LT";
+			return @"LITE";
 		case 1:
-			return @"MD";
+			return @"MED";
 		case 2:
-			return @"HV";
+			return @"HEAVY";
 		default:
 			break;
 	}
@@ -193,13 +283,13 @@
 	switch (coverage)
 	{
 		case 0:
-			return @"CLR";
+			return @"CLEAR";
 		case 1:
-			return @"PSU";
+			return @"PARTLYSUN";
 		case 2:
-			return @"OVC";
+			return @"OVRCAST";
 		case 3:
-			return @"HVY";
+			return @"HEAVY";
 		default:
 			break;
 	}
@@ -212,11 +302,11 @@
 	switch (percipitationType)
 	{
 		case 0:
-			return @"RAI";
+			return @"RAIN";
 		case 1:
-			return @"SNW";
+			return @"SNOW";
 		case 2:
-			return @"SLT";
+			return @"SLEET";
 		default:
 			break;
 	}
