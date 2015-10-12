@@ -150,9 +150,29 @@
 	return @"WINDOWDOWN";
 }
 
-+(NSString *)rumbleStripsTag
++(NSString *)rumbleStripsLeftTag
 {
-	return @"RBS";
+	return @"RBL";
+}
+
++(NSString *)rumbleStripsRightTag
+{
+	return @"RBR";
+}
+
++(NSString *)airbagDriverTag
+{
+	return @"ABD";
+}
+
++(NSString *)airbagPassengerTag
+{
+	return @"ABP";
+}
+
++(NSString *)doorSlamTag
+{
+	return @"DS";
 }
 
 +(NSString *)phoneHandlingGenericTag
