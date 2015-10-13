@@ -19,6 +19,7 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 
 @interface ViewController ()
 	@property(nonatomic, weak) IBOutlet UIButton *btnStartStopAdvertising;
+	@property(nonatomic, weak) IBOutlet UILabel *lblVersionInfo;
 
 	@property(nonatomic ,strong) CPeripheralManager *periphMgr;
 	@property (weak, nonatomic) IBOutlet UIView *theLineSeparatorView;
@@ -31,6 +32,8 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 	-(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop;//TRUE = Start  FALSE = Stop
 
 	-(IBAction)onAdvertise:(UIButton *)sender;
+
+	-(NSString*)versionInformation;
 @end
 
 @implementation ViewController
@@ -51,6 +54,7 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 {
 	[super viewDidAppear:animated];
 	[self layoutEventRecordingViews];
+	self.lblVersionInfo.text = [self versionInformation];
 }
 
 -(RoadConditionsView *)roadConditionsView
@@ -248,6 +252,16 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 	int offset = ScrollViewOffset / ScreenWidth;
 	
 	self.pageIndicator.currentPage = offset;
+}
+
+-(NSString *)versionInformation
+{
+	id localizedVersion = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:@"CFBundleShortVersionString"];
+	NSString *version = (localizedVersion != nil) ? localizedVersion : [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+
+	NSString *appName = [[[[NSBundle mainBundle] bundleIdentifier] componentsSeparatedByString:@"."] lastObject];
+
+	return [NSString stringWithFormat:@"%@ - Ver: %@", appName, version];
 }
 
 @end
