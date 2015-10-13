@@ -77,10 +77,12 @@
 +(NSString *)hardLeftTurnTag;
 +(NSString *)hardRightTurnTag;
 +(NSString *)rapidAccelerationTag;
++(NSString *)doorSlamTag;
 
 //Road Hazards
 +(NSString *)potholeTag;
-+(NSString *)rumbleStripsTag;
++(NSString *)rumbleStripsLeftTag;
++(NSString *)rumbleStripsRightTag;
 
 +(NSString *)windowUpTag;
 
@@ -88,6 +90,8 @@
 +(NSString *)flatTireTag;
 +(NSString *)barometricTag;
 +(NSString *)windowDownTag;
++(NSString *) airbagDriverTag;
++(NSString *) airbagPassengerTag;
 
 +(NSString *)phoneHandlingGenericTag;
 +(NSString *)phoneHandlingTextingTag;

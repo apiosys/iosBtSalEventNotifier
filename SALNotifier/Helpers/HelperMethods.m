@@ -169,11 +169,35 @@
 		case PHONEHANDLING_TALK_START:
 			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines phoneHandlingTalkingTag]];
 			break;
-		case RUMBLESTRIPS_STOP:
-			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines rumbleStripsTag]];
+		case RSL_START:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines rumbleStripsLeftTag]];
 			break;
-		case RUMBLESTRIPS_START:
-			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines rumbleStripsTag]];
+		case RSL_STOP:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines rumbleStripsLeftTag]];
+			break;
+		case RSR_START:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines rumbleStripsRightTag]];
+			break;
+		case RSR_STOP:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines rumbleStripsRightTag]];
+			break;
+		case ABD_START:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines airbagDriverTag]];
+			break;
+		case ABD_STOP:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines airbagDriverTag]];
+			break;
+		case ABP_START:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines airbagPassengerTag]];
+			break;
+		case ABP_STOP:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines airbagPassengerTag]];
+			break;
+		case DS_START:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines doorSlamTag]];
+			break;
+		case DS_STOP:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines doorSlamTag]];
 			break;
 		default:
 			return nil;
