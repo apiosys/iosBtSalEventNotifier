@@ -264,12 +264,12 @@
 	{
 		case 0:
 			return @"UP";
-		case 3:
-			return @"CRACKED";
-		case 2:
-			return @"HALFWAY";
 		case 1:
 			return @"DOWN";
+		case 2:
+			return @"HALFWAY";
+		case 3:
+			return @"CRACKED";
 		default:
 			return @"UNK";
 			break;
