@@ -265,11 +265,11 @@
 		case 0:
 			return @"UP";
 		case 1:
-			return @"CRACKED";
+			return @"DOWN";
 		case 2:
 			return @"HALFWAY";
 		case 3:
-			return @"DOWN";
+			return @"CRACKED";
 		default:
 			return @"UNK";
 			break;
