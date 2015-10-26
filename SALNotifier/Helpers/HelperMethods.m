@@ -199,6 +199,18 @@
 		case DS_STOP:
 			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines doorSlamTag]];
 			break;
+		case LCL_START:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines laneChangeLeftTag]];
+			break;
+		case LCL_STOP:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines laneChangeLeftTag]];
+			break;
+		case LCR_START:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines startEventTag], [ConstantDefines messageDelimiter], [ConstantDefines laneChangeRightTag]];
+			break;
+		case LCR_STOP:
+			strMessage = [NSString stringWithFormat:@"%@%@%@", [ConstantDefines endEventTag], [ConstantDefines messageDelimiter], [ConstantDefines laneChangeRightTag]];
+			break;
 		default:
 			return nil;
 	}

@@ -48,6 +48,12 @@ static NSString * const START_ABP_TEXT = @"Start Airbag-Pass.";
 static NSString * const STOP_DS_TEXT = @"Stop Door Slam";
 static NSString * const START_DS_TEXT = @"Start Door Slam";
 
+static NSString * const STOP_LCL_TEXT = @"Stop Ln Chg-Left";
+static NSString * const START_LCL_TEXT = @"Start Ln Chg-Left";
+
+static NSString * const STOP_LCR_TEXT = @"Stop Ln Chg-Right";
+static NSString * const START_LCR_TEXT = @"Start Ln Chg-Right";
+
 static NSString * const STOP_ADVERTISING_TEXT = @"Stop Advertising";
 static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 
@@ -139,7 +145,10 @@ static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
 				([btn.restorationIdentifier compare:@"startStopRumbleRightButton"] == NSOrderedSame)||
 				([btn.restorationIdentifier compare:@"startStopAirbagDriverButton"] == NSOrderedSame)||
 				([btn.restorationIdentifier compare:@"startStopAirbagPassengerButton"] == NSOrderedSame)||
-				([btn.restorationIdentifier compare:@"startStopDoorSlamButton"] == NSOrderedSame))
+				([btn.restorationIdentifier compare:@"startStopDoorSlamButton"] == NSOrderedSame)||
+				([btn.restorationIdentifier compare:@"startStopLaneChangeLeftButton"] == NSOrderedSame)||
+				([btn.restorationIdentifier compare:@"startStopLaneChangeRightButton"] == NSOrderedSame))
+
 		{
 			[self configureButtonBackGround:btn isStart:FALSE];
 		}
@@ -188,6 +197,10 @@ static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
 		[self handleEventABP:sender];
 	else if([sender.restorationIdentifier compare:@"startStopDoorSlamButton"] == NSOrderedSame)
 		[self handleEventDS:sender];
+	else if([sender.restorationIdentifier compare:@"startStopLaneChangeLeftButton"] == NSOrderedSame)
+		[self handleEventLCL:sender];
+	else if([sender.restorationIdentifier compare:@"startStopLaneChangeRightButton"] == NSOrderedSame)
+		[self handleEventLCR:sender];
 }
 
 -(void)handleEventHB:(UIButton *)btn
@@ -485,6 +498,46 @@ static NSString * const START_SNOWYROAD_TEXT = @"Start Snow Road";
 	{
 		[periphMgr updateServiceValue:DS_STOP];
 		[btn setTitle:START_DS_TEXT forState:UIControlStateNormal];
+
+		[self configureButtonBackGround:btn isStart:FALSE];
+	}
+}
+
+-(void)handleEventLCR:(UIButton *)btn
+{
+	CPeripheralManager *periphMgr = [CPeripheralManager thePeripheralManager];
+
+	if([btn.currentTitle compare:START_LCR_TEXT] == NSOrderedSame)
+	{
+		[periphMgr updateServiceValue:LCR_START];
+		[btn setTitle:STOP_LCR_TEXT forState:UIControlStateNormal];
+
+		[self configureButtonBackGround:btn isStart:TRUE];
+	}
+	else if([btn.currentTitle compare:STOP_LCR_TEXT] == NSOrderedSame)
+	{
+		[periphMgr updateServiceValue:LCR_STOP];
+		[btn setTitle:START_LCR_TEXT forState:UIControlStateNormal];
+
+		[self configureButtonBackGround:btn isStart:FALSE];
+	}
+}
+
+-(void)handleEventLCL:(UIButton *)btn
+{
+	CPeripheralManager *periphMgr = [CPeripheralManager thePeripheralManager];
+
+	if([btn.currentTitle compare:START_LCL_TEXT] == NSOrderedSame)
+	{
+		[periphMgr updateServiceValue:LCL_START];
+		[btn setTitle:STOP_LCL_TEXT forState:UIControlStateNormal];
+
+		[self configureButtonBackGround:btn isStart:TRUE];
+	}
+	else if([btn.currentTitle compare:STOP_LCL_TEXT] == NSOrderedSame)
+	{
+		[periphMgr updateServiceValue:LCL_STOP];
+		[btn setTitle:START_LCL_TEXT forState:UIControlStateNormal];
 
 		[self configureButtonBackGround:btn isStart:FALSE];
 	}

@@ -32,6 +32,10 @@ typedef enum
 	ABP_STOP,
 	DS_START,
 	DS_STOP,
+	LCL_START,
+	LCL_STOP,
+	LCR_START,
+	LCR_STOP,
 	
 	ICY_STOP,
 	ICY_START,

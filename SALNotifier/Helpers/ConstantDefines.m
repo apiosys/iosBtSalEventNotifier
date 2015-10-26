@@ -152,12 +152,12 @@
 
 +(NSString *)rumbleStripsLeftTag
 {
-	return @"RBL";
+	return @"RSL";
 }
 
 +(NSString *)rumbleStripsRightTag
 {
-	return @"RBR";
+	return @"RSR";
 }
 
 +(NSString *)airbagDriverTag
@@ -173,6 +173,16 @@
 +(NSString *)doorSlamTag
 {
 	return @"DS";
+}
+
++(NSString *)laneChangeLeftTag
+{
+	return @"LCL";
+}
+
++(NSString *)laneChangeRightTag
+{
+	return @"LCR";
 }
 
 +(NSString *)phoneHandlingGenericTag
