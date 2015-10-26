@@ -78,6 +78,8 @@
 +(NSString *)hardRightTurnTag;
 +(NSString *)rapidAccelerationTag;
 +(NSString *)doorSlamTag;
++(NSString *)laneChangeLeftTag;
++(NSString *)laneChangeRightTag;
 
 //Road Hazards
 +(NSString *)potholeTag;
