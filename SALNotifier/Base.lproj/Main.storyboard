@@ -450,7 +450,9 @@
                                     <constraint firstItem="FF8-ej-ZpX" firstAttribute="top" secondItem="RoT-le-kK4" secondAttribute="top" constant="8" id="ilo-m8-Fym"/>
                                     <constraint firstItem="NNm-Pc-a9y" firstAttribute="top" secondItem="fJZ-d2-rNK" secondAttribute="bottom" constant="40" id="jhc-yU-Ag5"/>
                                     <constraint firstItem="NNm-Pc-a9y" firstAttribute="trailing" secondItem="Xzg-mW-V39" secondAttribute="trailing" id="nI7-20-Sqj"/>
-                                    <constraint firstItem="Ipr-xq-Mpt" firstAttribute="centerY" secondItem="hTJ-Fz-5g1" secondAttribute="centerY" constant="7" id="nTF-iM-5JU"/>
+                                    <constraint firstItem="Ipr-xq-Mpt" firstAttribute="centerY" secondItem="hTJ-Fz-5g1" secondAttribute="centerY" constant="7" id="nTF-iM-5JU">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
                                     <constraint firstItem="Bl5-AT-afy" firstAttribute="trailing" secondItem="RoT-le-kK4" secondAttribute="trailingMargin" id="npA-6R-oSW"/>
                                     <constraint firstItem="Bl5-AT-afy" firstAttribute="width" secondItem="FF8-ej-ZpX" secondAttribute="width" id="o0r-M5-RF9"/>
                                     <constraint firstItem="Bl5-AT-afy" firstAttribute="firstBaseline" secondItem="FF8-ej-ZpX" secondAttribute="baseline" id="p8z-cS-zx9"/>
