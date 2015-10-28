@@ -34,6 +34,8 @@
 		05DDE4821A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */; };
 		05ECC9B81AE82DEB000D743F /* StartStopEventsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ECC9B71AE82DEB000D743F /* StartStopEventsView.m */; };
 		05ECC9BA1AE82E19000D743F /* StartStopEventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05ECC9B91AE82E19000D743F /* StartStopEventsView.xib */; };
+		0CCFB5A91BE162EF0066BCC2 /* ConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCFB5A81BE162EF0066BCC2 /* ConditionsViewController.m */; };
+		0CCFB5AC1BE164960066BCC2 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCFB5AB1BE164960066BCC2 /* EventViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,10 @@
 		05ECC9B61AE82DEB000D743F /* StartStopEventsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartStopEventsView.h; path = SALNotifier/EventMarkingsView/StartStopEventsView.h; sourceTree = "<group>"; };
 		05ECC9B71AE82DEB000D743F /* StartStopEventsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartStopEventsView.m; path = SALNotifier/EventMarkingsView/StartStopEventsView.m; sourceTree = "<group>"; };
 		05ECC9B91AE82E19000D743F /* StartStopEventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StartStopEventsView.xib; path = SALNotifier/EventMarkingsView/StartStopEventsView.xib; sourceTree = "<group>"; };
+		0CCFB5A71BE162EF0066BCC2 /* ConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionsViewController.h; sourceTree = "<group>"; };
+		0CCFB5A81BE162EF0066BCC2 /* ConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionsViewController.m; sourceTree = "<group>"; };
+		0CCFB5AA1BE164960066BCC2 /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
+		0CCFB5AB1BE164960066BCC2 /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,10 +189,9 @@
 		05DDE4451A34FCA100EAB40E /* SALNotifier */ = {
 			isa = PBXGroup;
 			children = (
+				0CCFB5A61BE162660066BCC2 /* ViewControllers */,
 				05DDE44A1A34FCA100EAB40E /* AppDelegate.h */,
 				05DDE44B1A34FCA100EAB40E /* AppDelegate.m */,
-				05DDE4501A34FCA100EAB40E /* ViewController.h */,
-				05DDE4511A34FCA100EAB40E /* ViewController.m */,
 				05DDE4531A34FCA100EAB40E /* Main.storyboard */,
 				05DDE4561A34FCA100EAB40E /* Images.xcassets */,
 				05DDE4581A34FCA100EAB40E /* LaunchScreen.xib */,
@@ -252,6 +257,19 @@
 				05ECC9B91AE82E19000D743F /* StartStopEventsView.xib */,
 			);
 			name = EventMarkingsViews;
+			sourceTree = "<group>";
+		};
+		0CCFB5A61BE162660066BCC2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				05DDE4501A34FCA100EAB40E /* ViewController.h */,
+				05DDE4511A34FCA100EAB40E /* ViewController.m */,
+				0CCFB5A71BE162EF0066BCC2 /* ConditionsViewController.h */,
+				0CCFB5A81BE162EF0066BCC2 /* ConditionsViewController.m */,
+				0CCFB5AA1BE164960066BCC2 /* EventViewController.h */,
+				0CCFB5AB1BE164960066BCC2 /* EventViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,11 +388,13 @@
 				05DDE44F1A34FCA100EAB40E /* SALNotifier.xcdatamodeld in Sources */,
 				05A651041AD2AC6F00E295F0 /* WeatherEnvironmentView.m in Sources */,
 				05A650FF1AD2A7C600E295F0 /* VehicleEnvironmentView.m in Sources */,
+				0CCFB5A91BE162EF0066BCC2 /* ConditionsViewController.m in Sources */,
 				05DDE47D1A35023400EAB40E /* CEventNotificationService.m in Sources */,
 				05DDE44C1A34FCA100EAB40E /* AppDelegate.m in Sources */,
 				05A940801A729765002C1DAC /* ConstantDefines.m in Sources */,
 				05DDE4521A34FCA100EAB40E /* ViewController.m in Sources */,
 				05DDE4491A34FCA100EAB40E /* main.m in Sources */,
+				0CCFB5AC1BE164960066BCC2 /* EventViewController.m in Sources */,
 				05A6510A1AD2B27100E295F0 /* RoadConditionsView.m in Sources */,
 				05DDE4791A35009200EAB40E /* CPeripheralManager.m in Sources */,
 			);
