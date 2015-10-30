@@ -8,14 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Defs.h"
-
 @interface HelperMethods : NSObject
 
 +(double)celciusToFahrenheit:(double)dCelcius;
 +(double)fahrenheitToCelcius:(double)dFahrenheit;
 
 +(BOOL)stringToDouble:(NSString *)strVal derivedDoubleValue:(double *)dVal;
-+(NSString *)notificationEnumToString:(NOTIFICATION_EVENTS)eNotificationEvent;
 
 @end

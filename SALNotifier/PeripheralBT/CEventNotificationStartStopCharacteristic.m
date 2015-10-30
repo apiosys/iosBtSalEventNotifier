@@ -79,23 +79,4 @@
 	{}
 }
 
--(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr
-{
-	NSString *strMessage = [HelperMethods notificationEnumToString:eNotificationVal];
-
-	if(strMessage == nil)
-		return;
-
-	@try
-	{
-		NSData *msgData = [strMessage dataUsingEncoding:NSUTF8StringEncoding];
-		
-		[periphMgr updateValue:msgData forCharacteristic:self.salEventNotification onSubscribedCentrals:nil];
-	}
-	@catch(NSException *exception)
-	{}
-	@finally
-	{}
-}
-
 @end

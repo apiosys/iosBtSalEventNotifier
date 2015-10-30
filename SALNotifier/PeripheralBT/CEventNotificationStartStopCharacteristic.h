@@ -9,14 +9,11 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <Foundation/Foundation.h>
 
-#import "Defs.h"
-
 @interface CEventNotificationStartStopCharacteristic : NSObject
 
 	@property(nonatomic, readonly) CBMutableCharacteristic *theStartStopCharacteristic;
 
 	-(void)updateServiceValueMessage:(NSString *)notificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr;
-	-(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr;
 
 
 @end
