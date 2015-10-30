@@ -9,15 +9,12 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <Foundation/Foundation.h>
 
-#import "Defs.h"
-
 @interface CPeripheralManager : NSObject<CBPeripheralManagerDelegate>
 
 +(CPeripheralManager *)thePeripheralManager;
 
 -(void)advertiseTheServices;
 -(void)stopAdvertisingTheServices;
--(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal;
 -(void)updateServiceValueWithMessage:(NSString *)messageNotificationVal;
 
 @end

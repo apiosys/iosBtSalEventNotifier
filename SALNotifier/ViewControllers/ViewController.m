@@ -15,9 +15,8 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 @interface ViewController ()
 	@property(nonatomic, weak) IBOutlet UIButton *btnStartStopAdvertising;
 	@property(nonatomic, weak) IBOutlet UILabel *lblVersionInfo;
-
 	@property(nonatomic ,strong) CPeripheralManager *periphMgr;
-	@property (weak, nonatomic) IBOutlet UIView *theLineSeparatorView;
+	@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lowerThirdHeightConstraint;
 
 	-(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop;//TRUE = Start  FALSE = Stop
 
@@ -27,18 +26,25 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 @end
 
 @implementation ViewController
+{
+	CGFloat _startingLowerThirdHeight;
+	UIColor * _startingButtonColor;
+}
 
 @synthesize periphMgr = _periphMgr;
+
+-(void)viewDidLoad
+{
+	[super viewDidLoad];
+	_startingLowerThirdHeight = self.lowerThirdHeightConstraint.constant;
+	_startingButtonColor = [self.btnStartStopAdvertising titleColorForState:UIControlStateNormal];
+	[self configureButtonBackGround:self.btnStartStopAdvertising isStart:FALSE];
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 	self.lblVersionInfo.text = [self versionInformation];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	NSLog(@"Touches");
 }
 
 -(IBAction)onAdvertise:(UIButton *)sender
@@ -61,15 +67,8 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 
 -(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop
 {
-	btn.layer.cornerRadius = 10.0f;
-	btn.layer.masksToBounds = TRUE;
-
-	if(bIsStartOrStop == TRUE)//If you're starting
-		btn.layer.borderColor = [[UIColor redColor]CGColor];
-	else
-		btn.layer.borderColor = [[UIColor colorWithRed:206.0 / 255.0 green:206.0 / 255.0 blue:206.0 / 255.0 alpha:1.0]CGColor];
-
-	btn.layer.borderWidth = 5.0f;
+	UIColor * labelColor = (bIsStartOrStop) ? [UIColor redColor] : _startingButtonColor;
+	[btn setTitleColor:labelColor forState:UIControlStateNormal];
 }
 
 -(NSString *)versionInformation
@@ -81,5 +80,60 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 
 	return [NSString stringWithFormat:@"%@ - Ver: %@", appName, version];
 }
+
+- (IBAction)moveLineSeperator:(UIPanGestureRecognizer *)sender
+{
+	if (sender.state == UIGestureRecognizerStateChanged)
+	{
+		CGPoint translation = [sender translationInView:sender.view];
+		CGFloat currentHeight = self.lowerThirdHeightConstraint.constant;
+		CGFloat newHeight = currentHeight - translation.y;
+		if (newHeight < 0.0)
+		{
+			newHeight = 0.0;
+		}
+		else if (newHeight > _startingLowerThirdHeight)
+		{
+			newHeight = _startingLowerThirdHeight;
+		}
+		self.lowerThirdHeightConstraint.constant = newHeight;
+
+		[sender setTranslation:CGPointZero inView:sender.view];
+	}
+	else if(sender.state == UIGestureRecognizerStateEnded)
+	{
+		CGPoint velocity = [sender velocityInView:sender.view];
+
+		CGFloat currentHeight = self.lowerThirdHeightConstraint.constant;
+		CGFloat endingHeight;
+		// Handle case where user rapidly swipes one direction or the other
+		if (velocity.y > 300.0)
+		{
+			endingHeight = 0.0;
+		}
+		else if (velocity.y < -300.0)
+		{
+			endingHeight = _startingLowerThirdHeight;
+		}
+		// Handle user stopping before fully up or down
+		else if (currentHeight < _startingLowerThirdHeight/2)
+		{
+			endingHeight = 0.0;
+		}
+		else
+		{
+			endingHeight = _startingLowerThirdHeight;
+		}
+
+		// Animate Change
+		[self.view layoutIfNeeded];
+		self.lowerThirdHeightConstraint.constant = endingHeight;
+		[UIView animateWithDuration:0.25 animations:^{
+			[self.view layoutIfNeeded];
+		}];
+
+	}
+}
+
 
 @end

@@ -78,18 +78,5 @@
 	{}
 }
 
--(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr
-{
-	@try
-	{
-		[self.startStopCharacteristic updateServiceValue:eNotificationVal thePeripheralManager:periphMgr];
-	}
-	@catch (NSException *exception)
-	{
-		NSLog(@"Exception updating the characteristic: %@", exception.description);
-	}
-	@finally
-	{}
-}
 
 @end

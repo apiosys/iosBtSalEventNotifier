@@ -75,11 +75,6 @@
 	[self.nativePeripheralManager stopAdvertising];
 }
 
--(void)updateServiceValue:(NOTIFICATION_EVENTS)eNotificationVal
-{
-	[self.notificationService updateServiceValue:eNotificationVal thePeripheralManager:self.nativePeripheralManager];
-}
-
 -(void)updateServiceValueWithMessage:(NSString *)messageNotificationVal
 {
 	[self.notificationService updateServiceMessageValue:messageNotificationVal thePeripheralManager:self.nativePeripheralManager];
