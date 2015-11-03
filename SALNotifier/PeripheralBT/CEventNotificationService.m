@@ -7,68 +7,51 @@
 */
 
 #import "CEventNotificationService.h"
-#import "CEventNotificationStartStopCharacteristic.h"
+#import "NotifierCBUUIDManager.h"
 
 @interface CEventNotificationService()
-	@property(nonatomic, strong) CBUUID *notificationServiceUUID;
-	@property(nonatomic, strong) CBMutableService *notificationService;
-	@property(nonatomic, strong) CEventNotificationStartStopCharacteristic *startStopCharacteristic;
-	@property(nonatomic, readonly) NSString *strNotificationServiceUUID;
+
 @end
 
 @implementation CEventNotificationService
 
-@synthesize notificationService = _notificationService;
-@synthesize startStopCharacteristic = _startStopCharacteristic;
-@synthesize notificationServiceUUID = _notificationServiceUUID;
-
--(CBMutableService *)theNotificationService
+- (CBMutableService *)service
 {
-	return self.notificationService;
-}
-
--(NSString *)strServiceUUID
-{
-	return self.strNotificationServiceUUID;
-}
-
--(CBMutableService *)notificationService
-{
-	if(_notificationService == nil)
+	static dispatch_once_t once;
+	static CBMutableService * service;
+	dispatch_once(&once, ^
 	{
-		_notificationService = [[CBMutableService alloc] initWithType:self.notificationServiceUUID primary:TRUE];
-		_notificationService.characteristics = @[self.startStopCharacteristic.theStartStopCharacteristic];
-	}
+		service= [[CBMutableService alloc] initWithType:[NotifierCBUUIDManager eventNotificationServiceUUID] primary:TRUE];
+		service.characteristics = @[self.eventNotificationMessageCharacteristic];
+	});
 
-	return _notificationService;
+	return service;
 }
 
--(CEventNotificationStartStopCharacteristic *)startStopCharacteristic
+-(CBMutableCharacteristic *)eventNotificationMessageCharacteristic
 {
-	if(_startStopCharacteristic == nil)
-		_startStopCharacteristic = [[CEventNotificationStartStopCharacteristic alloc]init];
-	
-	return _startStopCharacteristic;
+	static dispatch_once_t once;
+	static CBMutableCharacteristic * characteristic;
+	dispatch_once(&once, ^
+	{
+		characteristic= [[CBMutableCharacteristic alloc] initWithType:[NotifierCBUUIDManager eventNotificationMessageCharacteristicUUID]
+														   properties:CBCharacteristicPropertyNotify
+																value:nil
+														  permissions:0
+						 ];
+	});
+
+	return characteristic;
 }
 
--(NSString *)strNotificationServiceUUID
-{
-	return @"CC2F4502-DE41-47D9-BFC3-BCB85136DC45";
-}
-
--(CBUUID *)notificationServiceUUID
-{
-	if(_notificationServiceUUID == nil)
-		_notificationServiceUUID = [CBUUID UUIDWithString:self.strNotificationServiceUUID];
-
-	return _notificationServiceUUID;
-}
-
--(void)updateServiceMessageValue:(NSString *)notificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr
+-(void) sendEventNotificationMessage:(NSString*)message UsingPeripheralManager:(CBPeripheralManager *)periphMgr;
 {
 	@try
 	{
-		[self.startStopCharacteristic updateServiceValueMessage:notificationVal thePeripheralManager:periphMgr];
+		NSData *msgData = [message dataUsingEncoding:NSUTF8StringEncoding];
+
+		if([periphMgr updateValue:msgData forCharacteristic:self.eventNotificationMessageCharacteristic onSubscribedCentrals:nil] == FALSE)
+			NSLog(@"Something went wrong");
 	}
 	@catch (NSException *exception)
 	{

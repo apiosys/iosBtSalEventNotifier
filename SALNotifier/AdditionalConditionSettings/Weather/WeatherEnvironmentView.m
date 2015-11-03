@@ -109,7 +109,7 @@
 								degreesMessage, [ConstantDefines degreesUnitsTag:self.degreesSelectionSwitch.on],
 								[ConstantDefines messageDelimiter], dTemperature];
 
-		[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:degreesMessage];
+		[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage: degreesMessage];
 	}
 }
 
@@ -142,7 +142,7 @@
 
 	degreesMessage = [degreesMessage stringByAppendingString:[ConstantDefines degreesUnitsTag:sender.on]];
 	
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:degreesMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:degreesMessage];
 }
 
 -(IBAction)onConditionSelectionChange:(UISegmentedControl *)sender
@@ -162,7 +162,7 @@
 	
 	precipitationMessage = [precipitationMessage stringByAppendingString:[ConstantDefines precipitationTag:(int)self.precipitationSegCtrl.selectedSegmentIndex]];
 	
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:precipitationMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:precipitationMessage];
 }
 
 -(void)onPrecipitationVoumeChange
@@ -172,7 +172,7 @@
 
 	precipitationVolumeMessage = [precipitationVolumeMessage stringByAppendingString:[ConstantDefines precipitationVolumeTag:(int)self.precipitationVolumeSegCtrl.selectedSegmentIndex]];
 
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:precipitationVolumeMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:precipitationVolumeMessage];
 }
 
 -(void)onCloudCoverageChange
@@ -182,7 +182,7 @@
 
 	cloudCoverageMessage = [cloudCoverageMessage stringByAppendingString:[ConstantDefines cloudCoverageTag:(int)self.cloudCoverageSegCtrl.selectedSegmentIndex]];
 	
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:cloudCoverageMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:cloudCoverageMessage];
 }
 
 @end

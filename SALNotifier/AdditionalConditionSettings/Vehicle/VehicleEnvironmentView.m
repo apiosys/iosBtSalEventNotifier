@@ -98,7 +98,7 @@
 	
 		numPeople = [numPeople stringByAppendingString:self.txtbxNumPeople.text];
 		
-		[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:numPeople];
+		[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:numPeople];
 	}
 }
 
@@ -109,7 +109,7 @@
 
 	radioVolumeMessage = [radioVolumeMessage stringByAppendingString:[ConstantDefines radionVolume:(int)sender.selectedSegmentIndex]];
 
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:radioVolumeMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:radioVolumeMessage];
 }
 
 -(IBAction)onWindowPositionChanged:(UISegmentedControl *)sender
@@ -119,7 +119,7 @@
 	
 	windowPositionMessage = [windowPositionMessage stringByAppendingString:[ConstantDefines windowPostition:(int)sender.selectedSegmentIndex]];
 
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:windowPositionMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:windowPositionMessage];
 }
 
 @end

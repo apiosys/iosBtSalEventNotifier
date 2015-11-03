@@ -68,7 +68,7 @@
 -(void)sendAction
 {
 	_isStarted = !_isStarted;
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:[self serviceValueMessage]];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage: [self serviceValueMessage]];
 }
 
 -(NSString*) serviceValueMessage

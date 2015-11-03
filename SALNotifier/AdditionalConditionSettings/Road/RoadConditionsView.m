@@ -94,7 +94,7 @@
 			break;
 	}
 
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:roadConditionMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:roadConditionMessage];
 }
 
 -(void)onRoadmaintenanceChange
@@ -118,7 +118,7 @@
 			break;
 	}
 	
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:roadMaintenanceMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:roadMaintenanceMessage];
 }
 
 -(void)onRoadWeatherAffectChange
@@ -145,7 +145,7 @@
 			break;
 	}
 
-	[[CPeripheralManager thePeripheralManager] updateServiceValueWithMessage:roadWeatherConditionsMessage];
+	[[CPeripheralManager thePeripheralManager] sendEventNotificationMessage:roadWeatherConditionsMessage];
 }
 
 @end

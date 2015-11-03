@@ -9,12 +9,29 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <Foundation/Foundation.h>
 
+@protocol RemoteDataCollectionDelegate <NSObject>
+
+	@optional
+	-(void) centralDidSubscribeForRemoteDataCollection:(CBCentral*)central ;
+	-(void) centralDidUnsubscribeForRemoteDataCollection:(CBCentral*)central ;
+
+@end
+
 @interface CPeripheralManager : NSObject<CBPeripheralManagerDelegate>
 
 +(CPeripheralManager *)thePeripheralManager;
 
 -(void)advertiseTheServices;
 -(void)stopAdvertisingTheServices;
--(void)updateServiceValueWithMessage:(NSString *)messageNotificationVal;
+
+-(void)sendEventNotificationMessage:(NSString *)messageNotificationVal;
+
+-(void) startDataCapture;
+-(void) stopDataCapture;
+
+-(NSArray*) allRemoteDataCollectionDelegates;
+-(void) addRemoteDataCollectionDelegate:(id<RemoteDataCollectionDelegate>) delegate;
+-(void) removeRemoteDataCollectionDelegate:(id<RemoteDataCollectionDelegate>) delegate;
+-(void) removeAllRemoteDataCollectionDelegates;
 
 @end

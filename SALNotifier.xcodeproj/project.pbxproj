@@ -30,8 +30,9 @@
 		05DDE47A1A35009200EAB40E /* CPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4781A35009200EAB40E /* CPeripheralManager.m */; };
 		05DDE47D1A35023400EAB40E /* CEventNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE47C1A35023400EAB40E /* CEventNotificationService.m */; };
 		05DDE47E1A35023400EAB40E /* CEventNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE47C1A35023400EAB40E /* CEventNotificationService.m */; };
-		05DDE4811A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */; };
-		05DDE4821A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */; };
+		0C85FE211BE91889006CEF07 /* DataCollectorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FE201BE91889006CEF07 /* DataCollectorsViewController.m */; };
+		0C85FE241BE94173006CEF07 /* NotifierCBUUIDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FE231BE94173006CEF07 /* NotifierCBUUIDManager.m */; };
+		0CBFCDD71BE7CA8C00058BCC /* CRemoteDataCollectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBFCDD61BE7CA8C00058BCC /* CRemoteDataCollectionService.m */; };
 		0CCFB5A91BE162EF0066BCC2 /* ConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCFB5A81BE162EF0066BCC2 /* ConditionsViewController.m */; };
 		0CCFB5B01BE16E380066BCC2 /* EventCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCFB5AF1BE16E380066BCC2 /* EventCollectionViewController.m */; };
 		0CF399401BE2A234006357B4 /* EventAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF3993F1BE2A234006357B4 /* EventAction.m */; };
@@ -81,8 +82,13 @@
 		05DDE4781A35009200EAB40E /* CPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPeripheralManager.m; path = SALNotifier/PeripheralBT/CPeripheralManager.m; sourceTree = "<group>"; };
 		05DDE47B1A35023400EAB40E /* CEventNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CEventNotificationService.h; path = SALNotifier/PeripheralBT/CEventNotificationService.h; sourceTree = "<group>"; };
 		05DDE47C1A35023400EAB40E /* CEventNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CEventNotificationService.m; path = SALNotifier/PeripheralBT/CEventNotificationService.m; sourceTree = "<group>"; };
-		05DDE47F1A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CEventNotificationStartStopCharacteristic.h; path = SALNotifier/PeripheralBT/CEventNotificationStartStopCharacteristic.h; sourceTree = "<group>"; };
-		05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CEventNotificationStartStopCharacteristic.m; path = SALNotifier/PeripheralBT/CEventNotificationStartStopCharacteristic.m; sourceTree = "<group>"; };
+		0C85FE1F1BE91889006CEF07 /* DataCollectorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCollectorsViewController.h; sourceTree = "<group>"; };
+		0C85FE201BE91889006CEF07 /* DataCollectorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCollectorsViewController.m; sourceTree = "<group>"; };
+		0C85FE221BE94173006CEF07 /* NotifierCBUUIDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotifierCBUUIDManager.h; path = SALNotifier/PeripheralBT/NotifierCBUUIDManager.h; sourceTree = "<group>"; };
+		0C85FE231BE94173006CEF07 /* NotifierCBUUIDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotifierCBUUIDManager.m; path = SALNotifier/PeripheralBT/NotifierCBUUIDManager.m; sourceTree = "<group>"; };
+		0CBFCDD51BE7CA8C00058BCC /* CRemoteDataCollectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRemoteDataCollectionService.h; path = SALNotifier/PeripheralBT/CRemoteDataCollectionService.h; sourceTree = "<group>"; };
+		0CBFCDD61BE7CA8C00058BCC /* CRemoteDataCollectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRemoteDataCollectionService.m; path = SALNotifier/PeripheralBT/CRemoteDataCollectionService.m; sourceTree = "<group>"; };
+		0CBFCDE11BE80E9300058BCC /* DataCaptureCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataCaptureCommand.h; path = SALNotifier/PeripheralBT/DataCaptureCommand.h; sourceTree = "<group>"; };
 		0CCFB5A71BE162EF0066BCC2 /* ConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionsViewController.h; sourceTree = "<group>"; };
 		0CCFB5A81BE162EF0066BCC2 /* ConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionsViewController.m; sourceTree = "<group>"; };
 		0CCFB5AE1BE16E380066BCC2 /* EventCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCollectionViewController.h; sourceTree = "<group>"; };
@@ -239,12 +245,15 @@
 		05DDE4721A35002900EAB40E /* PeripheralManager */ = {
 			isa = PBXGroup;
 			children = (
-				05DDE4771A35009200EAB40E /* CPeripheralManager.h */,
-				05DDE4781A35009200EAB40E /* CPeripheralManager.m */,
+				0CBFCDD51BE7CA8C00058BCC /* CRemoteDataCollectionService.h */,
+				0CBFCDD61BE7CA8C00058BCC /* CRemoteDataCollectionService.m */,
+				0CBFCDE11BE80E9300058BCC /* DataCaptureCommand.h */,
 				05DDE47B1A35023400EAB40E /* CEventNotificationService.h */,
 				05DDE47C1A35023400EAB40E /* CEventNotificationService.m */,
-				05DDE47F1A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.h */,
-				05DDE4801A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m */,
+				05DDE4771A35009200EAB40E /* CPeripheralManager.h */,
+				05DDE4781A35009200EAB40E /* CPeripheralManager.m */,
+				0C85FE221BE94173006CEF07 /* NotifierCBUUIDManager.h */,
+				0C85FE231BE94173006CEF07 /* NotifierCBUUIDManager.m */,
 			);
 			name = PeripheralManager;
 			sourceTree = "<group>";
@@ -258,6 +267,8 @@
 				0CCFB5A81BE162EF0066BCC2 /* ConditionsViewController.m */,
 				0CCFB5AE1BE16E380066BCC2 /* EventCollectionViewController.h */,
 				0CCFB5AF1BE16E380066BCC2 /* EventCollectionViewController.m */,
+				0C85FE1F1BE91889006CEF07 /* DataCollectorsViewController.h */,
+				0C85FE201BE91889006CEF07 /* DataCollectorsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -391,7 +402,8 @@
 			files = (
 				0CCFB5B01BE16E380066BCC2 /* EventCollectionViewController.m in Sources */,
 				05A940841A72A26B002C1DAC /* HelperMethods.m in Sources */,
-				05DDE4811A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */,
+				0C85FE241BE94173006CEF07 /* NotifierCBUUIDManager.m in Sources */,
+				0C85FE211BE91889006CEF07 /* DataCollectorsViewController.m in Sources */,
 				05DDE44F1A34FCA100EAB40E /* SALNotifier.xcdatamodeld in Sources */,
 				05A651041AD2AC6F00E295F0 /* WeatherEnvironmentView.m in Sources */,
 				05A650FF1AD2A7C600E295F0 /* VehicleEnvironmentView.m in Sources */,
@@ -402,6 +414,7 @@
 				0CF399441BE2B3B1006357B4 /* EventActionCollectionViewCell.m in Sources */,
 				05A940801A729765002C1DAC /* ConstantDefines.m in Sources */,
 				05DDE4521A34FCA100EAB40E /* ViewController.m in Sources */,
+				0CBFCDD71BE7CA8C00058BCC /* CRemoteDataCollectionService.m in Sources */,
 				05DDE4491A34FCA100EAB40E /* main.m in Sources */,
 				05A6510A1AD2B27100E295F0 /* RoadConditionsView.m in Sources */,
 				05DDE4791A35009200EAB40E /* CPeripheralManager.m in Sources */,
@@ -417,7 +430,6 @@
 				05DDE47E1A35023400EAB40E /* CEventNotificationService.m in Sources */,
 				05DDE47A1A35009200EAB40E /* CPeripheralManager.m in Sources */,
 				05A940811A729765002C1DAC /* ConstantDefines.m in Sources */,
-				05DDE4821A350BE800EAB40E /* CEventNotificationStartStopCharacteristic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
