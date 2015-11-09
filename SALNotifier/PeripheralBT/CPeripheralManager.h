@@ -13,7 +13,9 @@
 
 	@optional
 	-(void) centralDidSubscribeForRemoteDataCollection:(CBCentral*)central ;
-	-(void) centralDidUnsubscribeForRemoteDataCollection:(CBCentral*)central ;
+	-(void) centralDidUnsubscribeForRemoteDataCollection:(CBCentral*)central;
+	-(void) central:(CBCentral*)central didReportIdentifier:(NSString*)identifier;
+	-(void) central:(CBCentral*)central didUpdateDataCollectorStatus:(BOOL)isCollecting;
 
 @end
 
@@ -26,8 +28,8 @@
 
 -(void)sendEventNotificationMessage:(NSString *)messageNotificationVal;
 
--(void) startDataCapture;
--(void) stopDataCapture;
+-(void) startDataCapture: (NSArray*) remoteDataCollectors;
+-(void) stopDataCapture: (NSArray*) remoteDataCollectors;
 
 -(NSArray*) allRemoteDataCollectionDelegates;
 -(void) addRemoteDataCollectionDelegate:(id<RemoteDataCollectionDelegate>) delegate;

@@ -9,6 +9,7 @@
 #import "CPeripheralManager.h"
 #import "CEventNotificationService.h"
 #import "CRemoteDataCollectionService.h"
+#import "RemoteDataCollector.h"
 
 @interface CPeripheralManager()
 	@property(nonatomic, strong) CBPeripheralManager *nativePeripheralManager;
@@ -24,6 +25,8 @@
 
 	-(void)notifyThatCentralDidSubscribeForRemoteDataCollection: (CBCentral*) central;
 	-(void)notifyThatCentralDidUnsubscribeForRemoteDataCollection: (CBCentral*) central;
+	-(void) notifyThatCentral:(CBCentral *)central reportedIdentifier:(NSString *)identifier;
+	-(void) notifyThatCentral:(CBCentral *)central updatedDataCollectionStatus:(BOOL)isCollecting;
 
 @end
 
@@ -157,14 +160,38 @@
 	}
 }
 
--(void)startDataCapture
+-(void) notifyThatCentral:(CBCentral *)central reportedIdentifier:(NSString *)identifier
 {
-	[self.remoteDataCollectionService enableDataCapture:DATA_CAPTURE_COMMAND_START_CAPTURE UsingPeripheralManager:self.nativePeripheralManager];
+	for (id<RemoteDataCollectionDelegate> delegate in self.remoteDataCollectionDelegates)
+	{
+		if ([delegate respondsToSelector:@selector(central:didReportIdentifier:)])
+		{
+			[delegate central:central didReportIdentifier:identifier];
+		}
+	}
 }
 
--(void)stopDataCapture
+-(void) notifyThatCentral:(CBCentral *)central updatedDataCollectionStatus:(BOOL)isCollecting
 {
-	[self.remoteDataCollectionService enableDataCapture:DATA_CAPTURE_COMMAND_STOP_CAPTURE UsingPeripheralManager:self.nativePeripheralManager];
+	for (id<RemoteDataCollectionDelegate> delegate in self.remoteDataCollectionDelegates)
+	{
+		if ([delegate respondsToSelector:@selector(central:didUpdateDataCollectorStatus:)])
+		{
+			[delegate central:central didUpdateDataCollectorStatus:isCollecting];
+		}
+	}
+}
+
+
+
+-(void)startDataCapture:(NSArray*) centrals
+{
+	[self.remoteDataCollectionService enableDataCapture:DATA_CAPTURE_COMMAND_START_CAPTURE on:centrals usingPeripheralManager:self.nativePeripheralManager];
+}
+
+-(void)stopDataCapture:(NSArray*) centrals
+{
+	[self.remoteDataCollectionService enableDataCapture:DATA_CAPTURE_COMMAND_STOP_CAPTURE on:centrals usingPeripheralManager:self.nativePeripheralManager];
 }
 
 #pragma mark - Peripheral manager delegate calls
@@ -221,6 +248,26 @@
 	{
 		[self notifyThatCentralDidUnsubscribeForRemoteDataCollection: central];
 	}
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray<CBATTRequest *> *)requests
+{
+
+	for (CBATTRequest * request in requests)
+	{
+		if ([request.characteristic.UUID isEqual:self.remoteDataCollectionService.dataCollectorIdentifierCharacteristic.UUID])
+		{
+			NSString * identifier = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
+			[self notifyThatCentral:request.central reportedIdentifier: identifier];
+		}
+		else if ([request.characteristic.UUID isEqual:self.remoteDataCollectionService.dataCollectorCollectionStatusCharacteristic.UUID])
+		{
+			NSString * message = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
+			BOOL isCollecting = [message boolValue];
+			[self notifyThatCentral:request.central updatedDataCollectionStatus:isCollecting];
+		}
+	}
+
 }
 
 @end

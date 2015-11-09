@@ -18,6 +18,6 @@
 
 	-(CBMutableService*)service;
 
-	-(void)enableDataCapture:(DATA_CAPTURE_COMMAND)startCapture UsingPeripheralManager:(CBPeripheralManager*) manager;
+-(void)enableDataCapture:(DATA_CAPTURE_COMMAND)startCapture on:(NSArray*)remoteDataCollector usingPeripheralManager:(CBPeripheralManager*) manager;
 
 @end

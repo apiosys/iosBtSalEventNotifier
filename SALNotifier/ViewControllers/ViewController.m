@@ -7,10 +7,18 @@
 */
 
 #import "ViewController.h"
+#import "CPeripheralManager.h"
+
+static NSString * const STOP_ADVERTISING_TEXT = @"Stop Advertising";
+static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 
 @interface ViewController ()
 	@property(nonatomic, weak) IBOutlet UILabel *lblVersionInfo;
 	@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lowerThirdHeightConstraint;
+
+	-(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop;//TRUE = Start  FALSE = Stop
+	-(IBAction)onAdvertise:(UIButton *)sender;
+
 
 	-(NSString*)versionInformation;
 @end
@@ -31,6 +39,32 @@
 	[super viewDidAppear:animated];
 	self.lblVersionInfo.text = [self versionInformation];
 }
+
+-(IBAction)onAdvertise:(UIButton *)sender
+{
+	NSLog(@"%@", [sender titleColorForState:UIControlStateNormal]);
+	if([sender.currentTitle compare:START_ADVERTISING_TEXT] == NSOrderedSame)//Starting advertising
+	{
+		[[CPeripheralManager thePeripheralManager] advertiseTheServices];
+		[sender setTitle:STOP_ADVERTISING_TEXT forState:UIControlStateNormal];
+
+		[self configureButtonBackGround:sender isStart:TRUE];
+	}
+	else if([sender.currentTitle compare:STOP_ADVERTISING_TEXT] == NSOrderedSame)
+	{
+		[[CPeripheralManager thePeripheralManager] stopAdvertisingTheServices];
+		[sender setTitle:START_ADVERTISING_TEXT forState:UIControlStateNormal];
+
+		[self configureButtonBackGround:sender isStart:FALSE];
+	}
+}
+
+-(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop
+{
+	UIColor * tintColor = (bIsStartOrStop) ? [UIColor redColor] : nil;
+	[btn setTintColor:tintColor];
+}
+
 
 -(NSString *)versionInformation
 {

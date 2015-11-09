@@ -40,7 +40,7 @@
 					  characteristic= [[CBMutableCharacteristic alloc] initWithType:[NotifierCBUUIDManager remoteDataCollectionDataCollectorIdentifierCharacteristicUUID]
 																		 properties:CBCharacteristicPropertyWriteWithoutResponse
 																			  value:nil
-																		permissions:0
+																		permissions:CBAttributePermissionsWriteable
 									   ];
 				  });
 	
@@ -56,7 +56,7 @@
 					  characteristic= [[CBMutableCharacteristic alloc] initWithType:[NotifierCBUUIDManager remoteDataCollectionDataCollectorCollectionStatusCharacteristicUUID]
 																		 properties:CBCharacteristicPropertyWriteWithoutResponse
 																			  value:nil
-																		permissions:0
+																		permissions:CBAttributePermissionsWriteable
 									   ];
 				  });
 	
@@ -70,7 +70,11 @@
 	dispatch_once(&once, ^
 	{
 		remoteDataCollectionService = [[CBMutableService alloc] initWithType:[NotifierCBUUIDManager remoteDataCollectionServiceUUID] primary:TRUE];
-		remoteDataCollectionService.characteristics = @[self.commandCharacteristic, self.dataCollectorIdentifierCharacteristic, self.dataCollectorCollectionStatusCharacteristic];
+		remoteDataCollectionService.characteristics = @[
+														self.commandCharacteristic,
+														self.dataCollectorIdentifierCharacteristic,
+														self.dataCollectorCollectionStatusCharacteristic
+														];
 	});
 
 	return remoteDataCollectionService;
@@ -91,15 +95,16 @@
 	return command_message;
 }
 
--(void)enableDataCapture:(DATA_CAPTURE_COMMAND)command UsingPeripheralManager:(CBPeripheralManager*) manager
+-(void)enableDataCapture:(DATA_CAPTURE_COMMAND)command on:(NSArray*)centrals usingPeripheralManager:(CBPeripheralManager*) manager
 {
+
 	@try
 	{
 		NSString * message = [CRemoteDataCollectionService commandMessageForDataCaptureCommand:command];
 
 		NSData *msgData = [message dataUsingEncoding:NSUTF8StringEncoding];
 
-		if([manager updateValue:msgData forCharacteristic:self.commandCharacteristic onSubscribedCentrals:nil] == FALSE)
+		if([manager updateValue:msgData forCharacteristic:self.commandCharacteristic onSubscribedCentrals:centrals] == FALSE)
 			NSLog(@"Something went wrong");
 	}
 	@catch (NSException *exception)
@@ -111,6 +116,15 @@
 	
 }
 
+-(void) central:(CBCentral*) central didSubscribeToCharacteristic:(CBCharacteristic*) characteristic
+{
+
+}
+
+-(void) central:(CBCentral*) central didUnsubscribeToCharacteristic:(CBCharacteristic*) characteristic
+{
+
+}
 
 
 @end

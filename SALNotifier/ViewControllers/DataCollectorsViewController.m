@@ -8,20 +8,16 @@
 
 #import "DataCollectorsViewController.h"
 #import "CPeripheralManager.h"
-
-static NSString * const STOP_ADVERTISING_TEXT = @"Stop Advertising";
-static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
+#import "RemoteDataCollector.h"
 
 static NSString * const STOP_CAPTURE_TEXT = @"Stop Capture";
 static NSString * const START_CAPTURE_TEXT = @"Start Capture";
 
 @interface DataCollectorsViewController () <UITableViewDelegate, UITableViewDataSource, RemoteDataCollectionDelegate>
 
-	-(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop;//TRUE = Start  FALSE = Stop
-	-(IBAction)onAdvertise:(UIButton *)sender;
-
 	@property (weak, nonatomic) IBOutlet UITableView *connectedDataCollectorsStatusTableView;
-	@property(nonatomic, strong) NSMutableArray * connectedDataCollectors;
+	@property(nonatomic, strong) NSMutableDictionary * centralToDataCollectorMap;
+	@property(nonatomic, strong) NSMutableArray * connectedCentrals;
 
 @end
 
@@ -30,80 +26,80 @@ static NSString * const START_CAPTURE_TEXT = @"Start Capture";
 -(void)viewDidLoad
 {
 	[super viewDidLoad];
-	self.connectedDataCollectors = [NSMutableArray array];
+	self.connectedCentrals = [NSMutableArray array];
+	self.centralToDataCollectorMap = [NSMutableDictionary dictionary];
 	[[CPeripheralManager thePeripheralManager] addRemoteDataCollectionDelegate:self];
 }
 
--(IBAction)onAdvertise:(UIButton *)sender
+- (IBAction)startCapture:(UIButton *)sender
 {
-	NSLog(@"%@", [sender titleColorForState:UIControlStateNormal]);
-	if([sender.currentTitle compare:START_ADVERTISING_TEXT] == NSOrderedSame)//Starting advertising
-	{
-		[[CPeripheralManager thePeripheralManager] advertiseTheServices];
-		[sender setTitle:STOP_ADVERTISING_TEXT forState:UIControlStateNormal];
-
-		[self configureButtonBackGround:sender isStart:TRUE];
-	}
-	else if([sender.currentTitle compare:STOP_ADVERTISING_TEXT] == NSOrderedSame)
-	{
-		[[CPeripheralManager thePeripheralManager] stopAdvertisingTheServices];
-		[sender setTitle:START_ADVERTISING_TEXT forState:UIControlStateNormal];
-
-		[self configureButtonBackGround:sender isStart:FALSE];
-	}
-}
-- (IBAction)onCapture:(UIButton *)sender
-{
-	if ([sender.currentTitle isEqualToString:START_CAPTURE_TEXT])
-	{
-		[[CPeripheralManager thePeripheralManager] startDataCapture];
-		[sender setTitle:STOP_CAPTURE_TEXT forState:UIControlStateNormal];
-
-		[self configureButtonBackGround:sender isStart:TRUE];
-	}
-	else if ([sender.currentTitle isEqualToString:STOP_CAPTURE_TEXT])
-	{
-		[[CPeripheralManager thePeripheralManager] stopDataCapture];
-		[sender setTitle:START_CAPTURE_TEXT forState:UIControlStateNormal];
-		[self configureButtonBackGround:sender isStart:FALSE];
-	}
+	NSArray * stoppedRemoteDataCollectors = [self.centralToDataCollectorMap.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCollecting == FALSE"]];
+	NSArray * stoppedCentrals = [stoppedRemoteDataCollectors valueForKeyPath:@"@unionOfObjects.central"];
+	[[CPeripheralManager thePeripheralManager] startDataCapture: stoppedCentrals];
 }
 
--(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop
+-(IBAction)stopCapture:(UIButton*) sender
 {
-	UIColor * tintColor = (bIsStartOrStop) ? [UIColor redColor] : nil;
-	[btn setTintColor:tintColor];
+	NSArray * startedRemoteDataCollectors = [self.centralToDataCollectorMap.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCollecting == TRUE"]];
+	NSArray * startedCentrals = [startedRemoteDataCollectors valueForKeyPath:@"@unionOfObjects.central"];
+	[[CPeripheralManager thePeripheralManager] stopDataCapture: startedCentrals];
 }
 
 #pragma mark - UITableViewDataSource methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return self.connectedDataCollectors.count;
+	return self.connectedCentrals.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"DataCollectorStatusCell"];
 
-	CBCentral * central = [self.connectedDataCollectors objectAtIndex:indexPath.row];
+	CBCentral * central = [self.connectedCentrals objectAtIndex:indexPath.row];
+	RemoteDataCollector * dataCollector = [self.centralToDataCollectorMap objectForKey:central.identifier.UUIDString];
 
-	cell.textLabel.text = central.identifier.UUIDString;
+	cell.textLabel.text = dataCollector.identifier;
+	cell.detailTextLabel.text = dataCollector.isCollecting ? @"Collecting..." : @"Stopped";
 
 	return cell;
+}
+
+#pragma mark - UITableViewDelegate methods
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+	NSLog(@"Tapped");
 }
 
 #pragma mark - RemoteDataCollectionDelegate
 
 -(void)centralDidSubscribeForRemoteDataCollection:(CBCentral *)central
 {
-	[self.connectedDataCollectors addObject:central];
+	[self.connectedCentrals addObject:central];
+	[self.centralToDataCollectorMap setObject:[RemoteDataCollector remoteDataCollectorAtCentral:central] forKey:central.identifier.UUIDString];
 	[self.connectedDataCollectorsStatusTableView reloadData];
 }
 
 -(void)centralDidUnsubscribeForRemoteDataCollection:(CBCentral *)central
 {
-	[self.connectedDataCollectors removeObject:central];
+	[self.connectedCentrals removeObject:central];
+	[self.centralToDataCollectorMap removeObjectForKey:central.identifier.UUIDString];
+	[self.connectedDataCollectorsStatusTableView reloadData];
+}
+
+-(void)central:(CBCentral *)central didReportIdentifier:(NSString *)identifier
+{
+	RemoteDataCollector * collector = [self.centralToDataCollectorMap objectForKey:central.identifier.UUIDString];
+	collector.identifier = identifier;
+	[self.connectedDataCollectorsStatusTableView reloadData];
+}
+
+-(void)central:(CBCentral *)central didUpdateDataCollectorStatus :(BOOL)isCollecting
+{
+	RemoteDataCollector * collector = [self.centralToDataCollectorMap objectForKey:central.identifier.UUIDString];
+	collector.isCollecting = isCollecting;
+
 	[self.connectedDataCollectorsStatusTableView reloadData];
 }
 

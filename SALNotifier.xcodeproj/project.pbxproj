@@ -32,6 +32,7 @@
 		05DDE47E1A35023400EAB40E /* CEventNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE47C1A35023400EAB40E /* CEventNotificationService.m */; };
 		0C85FE211BE91889006CEF07 /* DataCollectorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FE201BE91889006CEF07 /* DataCollectorsViewController.m */; };
 		0C85FE241BE94173006CEF07 /* NotifierCBUUIDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FE231BE94173006CEF07 /* NotifierCBUUIDManager.m */; };
+		0C85FE301BE95DAD006CEF07 /* RemoteDataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FE2F1BE95DAD006CEF07 /* RemoteDataCollector.m */; };
 		0CBFCDD71BE7CA8C00058BCC /* CRemoteDataCollectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBFCDD61BE7CA8C00058BCC /* CRemoteDataCollectionService.m */; };
 		0CCFB5A91BE162EF0066BCC2 /* ConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCFB5A81BE162EF0066BCC2 /* ConditionsViewController.m */; };
 		0CCFB5B01BE16E380066BCC2 /* EventCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCFB5AF1BE16E380066BCC2 /* EventCollectionViewController.m */; };
@@ -86,6 +87,8 @@
 		0C85FE201BE91889006CEF07 /* DataCollectorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCollectorsViewController.m; sourceTree = "<group>"; };
 		0C85FE221BE94173006CEF07 /* NotifierCBUUIDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotifierCBUUIDManager.h; path = SALNotifier/PeripheralBT/NotifierCBUUIDManager.h; sourceTree = "<group>"; };
 		0C85FE231BE94173006CEF07 /* NotifierCBUUIDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotifierCBUUIDManager.m; path = SALNotifier/PeripheralBT/NotifierCBUUIDManager.m; sourceTree = "<group>"; };
+		0C85FE2E1BE95DAD006CEF07 /* RemoteDataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteDataCollector.h; path = SALNotifier/PeripheralBT/RemoteDataCollector.h; sourceTree = "<group>"; };
+		0C85FE2F1BE95DAD006CEF07 /* RemoteDataCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoteDataCollector.m; path = SALNotifier/PeripheralBT/RemoteDataCollector.m; sourceTree = "<group>"; };
 		0CBFCDD51BE7CA8C00058BCC /* CRemoteDataCollectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRemoteDataCollectionService.h; path = SALNotifier/PeripheralBT/CRemoteDataCollectionService.h; sourceTree = "<group>"; };
 		0CBFCDD61BE7CA8C00058BCC /* CRemoteDataCollectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRemoteDataCollectionService.m; path = SALNotifier/PeripheralBT/CRemoteDataCollectionService.m; sourceTree = "<group>"; };
 		0CBFCDE11BE80E9300058BCC /* DataCaptureCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataCaptureCommand.h; path = SALNotifier/PeripheralBT/DataCaptureCommand.h; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 				05DDE4781A35009200EAB40E /* CPeripheralManager.m */,
 				0C85FE221BE94173006CEF07 /* NotifierCBUUIDManager.h */,
 				0C85FE231BE94173006CEF07 /* NotifierCBUUIDManager.m */,
+				0C85FE2E1BE95DAD006CEF07 /* RemoteDataCollector.h */,
+				0C85FE2F1BE95DAD006CEF07 /* RemoteDataCollector.m */,
 			);
 			name = PeripheralManager;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				05DDE47D1A35023400EAB40E /* CEventNotificationService.m in Sources */,
 				0CF399401BE2A234006357B4 /* EventAction.m in Sources */,
 				05DDE44C1A34FCA100EAB40E /* AppDelegate.m in Sources */,
+				0C85FE301BE95DAD006CEF07 /* RemoteDataCollector.m in Sources */,
 				0CF399441BE2B3B1006357B4 /* EventActionCollectionViewCell.m in Sources */,
 				05A940801A729765002C1DAC /* ConstantDefines.m in Sources */,
 				05DDE4521A34FCA100EAB40E /* ViewController.m in Sources */,
@@ -498,6 +504,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -534,6 +541,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -547,6 +555,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SALNotifier/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -558,6 +567,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SALNotifier/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
