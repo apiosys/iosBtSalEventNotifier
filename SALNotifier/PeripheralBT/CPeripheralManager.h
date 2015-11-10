@@ -25,6 +25,7 @@
 
 -(void)advertiseTheServices;
 -(void)stopAdvertisingTheServices;
+@property(nonatomic, readonly) BOOL isAdvertising;
 
 -(void)sendEventNotificationMessage:(NSString *)messageNotificationVal;
 

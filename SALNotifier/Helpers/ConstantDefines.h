@@ -10,6 +10,9 @@
 
 @interface ConstantDefines : NSObject
 
++(NSString *) startAdvertisingText;
++(NSString *) stopAdvertisingText;
+
 +(NSString *)messageDelimiter;
 
 +(NSString *)endEventTag;

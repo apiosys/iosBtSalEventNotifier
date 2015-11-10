@@ -83,6 +83,11 @@
 	return @[ self.notificationService.service.UUID, self.remoteDataCollectionService.service.UUID ];
 }
 
+-(BOOL) isAdvertising
+{
+	return self.nativePeripheralManager.isAdvertising;
+}
+
 -(void)advertiseTheServices
 {
 	NSDictionary *advertisingDict = [NSDictionary dictionaryWithObject:[self allServiceUUIDs] forKey:CBAdvertisementDataServiceUUIDsKey];

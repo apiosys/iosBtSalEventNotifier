@@ -10,6 +10,16 @@
 
 @implementation ConstantDefines
 
++ (NSString *) startAdvertisingText
+{
+	return @"Start Advertising";
+}
+
++ (NSString *) stopAdvertisingText
+{
+	return @"Stop Advertising";
+}
+
 +(NSString *)messageDelimiter
 {
 	return @":";

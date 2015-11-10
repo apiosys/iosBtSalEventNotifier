@@ -8,15 +8,13 @@
 
 #import "ViewController.h"
 #import "CPeripheralManager.h"
-
-static NSString * const STOP_ADVERTISING_TEXT = @"Stop Advertising";
-static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
+#import "ConstantDefines.h"
 
 @interface ViewController ()
-	@property(nonatomic, weak) IBOutlet UILabel *lblVersionInfo;
+	@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 	@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lowerThirdHeightConstraint;
+	@property (weak, nonatomic) IBOutlet UIButton *advertisingButton;
 
-	-(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop;//TRUE = Start  FALSE = Stop
 	-(IBAction)onAdvertise:(UIButton *)sender;
 
 
@@ -34,35 +32,52 @@ static NSString * const START_ADVERTISING_TEXT = @"Start Advertising";
 	_startingLowerThirdHeight = self.lowerThirdHeightConstraint.constant;
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	self.lblVersionInfo.text = [self versionInformation];
+	self.versionLabel.text = [self versionInformation];
+	[UIView performWithoutAnimation: ^
+	 {
+		 [self configureAdvertisingButtonisAdvertising:[CPeripheralManager thePeripheralManager].isAdvertising];
+		 [self.advertisingButton layoutIfNeeded];
+	 }];
 }
 
 -(IBAction)onAdvertise:(UIButton *)sender
 {
-	NSLog(@"%@", [sender titleColorForState:UIControlStateNormal]);
-	if([sender.currentTitle compare:START_ADVERTISING_TEXT] == NSOrderedSame)//Starting advertising
-	{
-		[[CPeripheralManager thePeripheralManager] advertiseTheServices];
-		[sender setTitle:STOP_ADVERTISING_TEXT forState:UIControlStateNormal];
-
-		[self configureButtonBackGround:sender isStart:TRUE];
-	}
-	else if([sender.currentTitle compare:STOP_ADVERTISING_TEXT] == NSOrderedSame)
+	CPeripheralManager * peripheralManager = [CPeripheralManager thePeripheralManager];
+	if (peripheralManager.isAdvertising)
 	{
 		[[CPeripheralManager thePeripheralManager] stopAdvertisingTheServices];
-		[sender setTitle:START_ADVERTISING_TEXT forState:UIControlStateNormal];
+		[sender setTitle:[ConstantDefines startAdvertisingText] forState:UIControlStateNormal];
 
-		[self configureButtonBackGround:sender isStart:FALSE];
+		[self configureAdvertisingButtonisAdvertising:FALSE];
 	}
+	else
+	{
+		[[CPeripheralManager thePeripheralManager] advertiseTheServices];
+		[sender setTitle:[ConstantDefines stopAdvertisingText] forState:UIControlStateNormal];
+		 [self configureAdvertisingButtonisAdvertising:TRUE];
+		 }
 }
 
--(void)configureButtonBackGround:(UIButton *)btn isStart:(BOOL)bIsStartOrStop
+-(void)configureAdvertisingButtonisAdvertising:(BOOL)isAdvertising
 {
-	UIColor * tintColor = (bIsStartOrStop) ? [UIColor redColor] : nil;
-	[btn setTintColor:tintColor];
+	NSString * buttonText;
+	if (isAdvertising)
+	{
+		buttonText = [ConstantDefines stopAdvertisingText];
+	}
+	else
+	{
+		buttonText = [ConstantDefines startAdvertisingText];
+	}
+
+	[self.advertisingButton setTitle:buttonText forState:UIControlStateNormal];
+
+	UIColor * tintColor = (isAdvertising) ? [UIColor redColor] : nil;
+
+	[self.advertisingButton setTintColor:tintColor];
 }
 
 

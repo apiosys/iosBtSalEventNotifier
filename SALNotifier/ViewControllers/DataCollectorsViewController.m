@@ -9,15 +9,15 @@
 #import "DataCollectorsViewController.h"
 #import "CPeripheralManager.h"
 #import "RemoteDataCollector.h"
-
-static NSString * const STOP_CAPTURE_TEXT = @"Stop Capture";
-static NSString * const START_CAPTURE_TEXT = @"Start Capture";
+#import "ConstantDefines.h"
 
 @interface DataCollectorsViewController () <UITableViewDelegate, UITableViewDataSource, RemoteDataCollectionDelegate>
+	@property (weak, nonatomic) IBOutlet UIButton *advertisingButton;
 
 	@property (weak, nonatomic) IBOutlet UITableView *connectedDataCollectorsStatusTableView;
 	@property(nonatomic, strong) NSMutableDictionary * centralToDataCollectorMap;
 	@property(nonatomic, strong) NSMutableArray * connectedCentrals;
+	@property (weak, nonatomic) IBOutlet UITabBarItem *remoteCollectionTabBarItem;
 
 @end
 
@@ -29,6 +29,17 @@ static NSString * const START_CAPTURE_TEXT = @"Start Capture";
 	self.connectedCentrals = [NSMutableArray array];
 	self.centralToDataCollectorMap = [NSMutableDictionary dictionary];
 	[[CPeripheralManager thePeripheralManager] addRemoteDataCollectionDelegate:self];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[UIView performWithoutAnimation: ^
+	 {
+		 [self configureAdvertisingButtonisAdvertising:[CPeripheralManager thePeripheralManager].isAdvertising];
+		 [self.advertisingButton layoutIfNeeded];
+	 }];
+
 }
 
 - (IBAction)startCapture:(UIButton *)sender
@@ -43,6 +54,40 @@ static NSString * const START_CAPTURE_TEXT = @"Start Capture";
 	NSArray * startedRemoteDataCollectors = [self.centralToDataCollectorMap.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCollecting == TRUE"]];
 	NSArray * startedCentrals = [startedRemoteDataCollectors valueForKeyPath:@"@unionOfObjects.central"];
 	[[CPeripheralManager thePeripheralManager] stopDataCapture: startedCentrals];
+}
+
+-(IBAction)onAdvertise:(UIButton *)sender
+{
+	CPeripheralManager * peripheralManager = [CPeripheralManager thePeripheralManager];
+	if (peripheralManager.isAdvertising)
+	{
+		[[CPeripheralManager thePeripheralManager] stopAdvertisingTheServices];
+		[self configureAdvertisingButtonisAdvertising:FALSE];
+	}
+	else
+	{
+		[[CPeripheralManager thePeripheralManager] advertiseTheServices];
+		[self configureAdvertisingButtonisAdvertising:TRUE];
+	}
+}
+
+-(void)configureAdvertisingButtonisAdvertising:(BOOL)isAdvertising
+{
+	NSString * buttonText;
+	if (isAdvertising)
+	{
+		buttonText = [ConstantDefines stopAdvertisingText];
+	}
+	else
+	{
+		buttonText = [ConstantDefines startAdvertisingText];
+	}
+
+	[self.advertisingButton setTitle:buttonText forState:UIControlStateNormal];
+
+	UIColor * tintColor = (isAdvertising) ? [UIColor redColor] : nil;
+
+	[self.advertisingButton setTintColor:tintColor];
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -78,6 +123,7 @@ static NSString * const START_CAPTURE_TEXT = @"Start Capture";
 {
 	[self.connectedCentrals addObject:central];
 	[self.centralToDataCollectorMap setObject:[RemoteDataCollector remoteDataCollectorAtCentral:central] forKey:central.identifier.UUIDString];
+	self.remoteCollectionTabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", self.connectedCentrals.count];
 	[self.connectedDataCollectorsStatusTableView reloadData];
 }
 
@@ -85,6 +131,7 @@ static NSString * const START_CAPTURE_TEXT = @"Start Capture";
 {
 	[self.connectedCentrals removeObject:central];
 	[self.centralToDataCollectorMap removeObjectForKey:central.identifier.UUIDString];
+	self.remoteCollectionTabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", self.connectedCentrals.count];
 	[self.connectedDataCollectorsStatusTableView reloadData];
 }
 
