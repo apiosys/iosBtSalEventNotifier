@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConditionsViewController : UIViewController<UIScrollViewDelegate>
-
-	@property(nonatomic, weak) IBOutlet UIPageControl *pageIndicator;
-	@property(nonatomic, weak) IBOutlet UIScrollView *conditionViewsParentScrollView;
+@interface ConditionsViewController : UITableViewController
 
 @end

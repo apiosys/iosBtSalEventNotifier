@@ -8,18 +8,30 @@
 
 #import "CPeripheralManager.h"
 #import "CEventNotificationService.h"
+#import "CRemoteDataCollectionService.h"
+#import "RemoteDataCollector.h"
 
 @interface CPeripheralManager()
-	@property(nonatomic, strong) NSMutableArray *arrServices;//These are CEventNotificationService objects
 	@property(nonatomic, strong) CBPeripheralManager *nativePeripheralManager;
 	@property(nonatomic, strong) CEventNotificationService *notificationService;
+	@property(nonatomic, strong) CRemoteDataCollectionService * remoteDataCollectionService;
+	@property(nonatomic, strong) NSMutableArray * remoteDataCollectionDelegates;
 
 	-(id)initPeripheralManager;
+
+	-(NSArray*) allPeripheralServices;
+	-(NSArray*) allServiceUUIDs;
+	-(void)registerServices:(NSArray*) services;
+
+	-(void)notifyThatCentralDidSubscribeForRemoteDataCollection: (CBCentral*) central;
+	-(void)notifyThatCentralDidUnsubscribeForRemoteDataCollection: (CBCentral*) central;
+	-(void) notifyThatCentral:(CBCentral *)central reportedIdentifier:(NSString *)identifier;
+	-(void) notifyThatCentral:(CBCentral *)central updatedDataCollectionStatus:(BOOL)isCollecting;
+
 @end
 
 @implementation CPeripheralManager
 
-@synthesize arrServices = _arrServices;
 @synthesize notificationService = _notificationService;
 @synthesize nativePeripheralManager = _nativePeripheralManager;
 
@@ -52,21 +64,33 @@
 	if(self.nativePeripheralManager == nil)
 		self.nativePeripheralManager= [[CBPeripheralManager alloc]initWithDelegate:self queue:nil];
 
-	if(self.arrServices == nil)
-		self.arrServices = [[NSMutableArray alloc]init];
-
 	if(self.notificationService == nil)
-		self.notificationService = [[CEventNotificationService alloc]init];
+		self.notificationService = [[CEventNotificationService alloc] init];
+
+	if (self.remoteDataCollectionService == nil)
+		self.remoteDataCollectionService = [[CRemoteDataCollectionService alloc] init];
 
 	return self;
 }
 
+-(NSArray*)allPeripheralServices
+{
+	return @[self.notificationService.service, self.remoteDataCollectionService.service];
+}
+
+-(NSArray*) allServiceUUIDs
+{
+	return @[ self.notificationService.service.UUID, self.remoteDataCollectionService.service.UUID ];
+}
+
+-(BOOL) isAdvertising
+{
+	return self.nativePeripheralManager.isAdvertising;
+}
+
 -(void)advertiseTheServices
 {
-	NSArray *arrServiceUUIDsToAdvertise = [NSArray arrayWithObjects:[CBUUID UUIDWithString:self.notificationService.strServiceUUID], nil];
-
-	NSDictionary *advertisingDict = [NSDictionary dictionaryWithObject:arrServiceUUIDsToAdvertise forKey:CBAdvertisementDataServiceUUIDsKey];
-
+	NSDictionary *advertisingDict = [NSDictionary dictionaryWithObject:[self allServiceUUIDs] forKey:CBAdvertisementDataServiceUUIDsKey];
 	[self.nativePeripheralManager startAdvertising:advertisingDict];
 }
 
@@ -75,9 +99,104 @@
 	[self.nativePeripheralManager stopAdvertising];
 }
 
--(void)updateServiceValueWithMessage:(NSString *)messageNotificationVal
+-(void)sendEventNotificationMessage:(NSString *)messageNotificationVal
 {
-	[self.notificationService updateServiceMessageValue:messageNotificationVal thePeripheralManager:self.nativePeripheralManager];
+	[self.notificationService sendEventNotificationMessage:messageNotificationVal UsingPeripheralManager:self.nativePeripheralManager];
+}
+
+-(void) registerServices: (NSArray*)services
+{
+	for (CBMutableService * service in services)
+	{
+		[self.nativePeripheralManager addService:service]; //Publishes the service. Does NOT advertise!!!
+	}
+}
+
+#pragma mark - Remote Data Collection
+
+-(NSArray *) allRemoteDataCollectionDelegates
+{
+	if (self.remoteDataCollectionDelegates == nil)
+		return [NSArray array];
+
+	return self.remoteDataCollectionDelegates;
+}
+
+-(void)addRemoteDataCollectionDelegate:(id<RemoteDataCollectionDelegate>)delegate
+{
+	if (self.remoteDataCollectionDelegates == nil)
+		self.remoteDataCollectionDelegates = [NSMutableArray array];
+
+	if (delegate != nil && [self.remoteDataCollectionDelegates containsObject:delegate] == FALSE)
+		[self.remoteDataCollectionDelegates addObject:delegate];
+}
+
+-(void)removeRemoteDataCollectionDelegate:(id<RemoteDataCollectionDelegate>)delegate
+{
+	if (self.remoteDataCollectionDelegates != nil && delegate != nil)
+		[self.remoteDataCollectionDelegates removeObject:delegate];
+}
+
+-(void)removeAllRemoteDataCollectionDelegates
+{
+	if (self.remoteDataCollectionDelegates != nil)
+		[self.remoteDataCollectionDelegates removeAllObjects];
+}
+
+-(void)notifyThatCentralDidSubscribeForRemoteDataCollection:(CBCentral *)central
+{
+	for (id<RemoteDataCollectionDelegate> delegate in self.remoteDataCollectionDelegates)
+	{
+		if ([delegate respondsToSelector:@selector(centralDidSubscribeForRemoteDataCollection:)])
+		{
+			[delegate centralDidSubscribeForRemoteDataCollection:central];
+		}
+	}
+}
+
+-(void)notifyThatCentralDidUnsubscribeForRemoteDataCollection:(CBCentral *)central
+{
+	for (id<RemoteDataCollectionDelegate> delegate in self.remoteDataCollectionDelegates)
+	{
+		if ([delegate respondsToSelector:@selector(centralDidUnsubscribeForRemoteDataCollection:)])
+		{
+			[delegate centralDidUnsubscribeForRemoteDataCollection:central];
+		}
+	}
+}
+
+-(void) notifyThatCentral:(CBCentral *)central reportedIdentifier:(NSString *)identifier
+{
+	for (id<RemoteDataCollectionDelegate> delegate in self.remoteDataCollectionDelegates)
+	{
+		if ([delegate respondsToSelector:@selector(central:didReportIdentifier:)])
+		{
+			[delegate central:central didReportIdentifier:identifier];
+		}
+	}
+}
+
+-(void) notifyThatCentral:(CBCentral *)central updatedDataCollectionStatus:(BOOL)isCollecting
+{
+	for (id<RemoteDataCollectionDelegate> delegate in self.remoteDataCollectionDelegates)
+	{
+		if ([delegate respondsToSelector:@selector(central:didUpdateDataCollectorStatus:)])
+		{
+			[delegate central:central didUpdateDataCollectorStatus:isCollecting];
+		}
+	}
+}
+
+
+
+-(void)startDataCapture:(NSArray*) centrals
+{
+	[self.remoteDataCollectionService enableDataCapture:DATA_CAPTURE_COMMAND_START_CAPTURE on:centrals usingPeripheralManager:self.nativePeripheralManager];
+}
+
+-(void)stopDataCapture:(NSArray*) centrals
+{
+	[self.remoteDataCollectionService enableDataCapture:DATA_CAPTURE_COMMAND_STOP_CAPTURE on:centrals usingPeripheralManager:self.nativePeripheralManager];
 }
 
 #pragma mark - Peripheral manager delegate calls
@@ -105,31 +224,55 @@
 			NSLog(@"Power Off State");
 			break;
 		case CBPeripheralManagerStatePoweredOn:
-			[self.nativePeripheralManager addService:self.notificationService.theNotificationService];//Publishes the service. Does NOT advertise!!!
-			break;
-		default:
+			[self registerServices:[self allPeripheralServices]];
 			break;
 	}
 
 	NSLog(@"Peripheral Delegate");
 }
 
-//Callback for connection.
+-(void)peripheralManager:(CBPeripheralManager *)peripheral didAddService:(CBService *)service error:(NSError *)error
+{
+	if (error)
+	{
+		NSLog(@"Error publishing service: %@", [error localizedDescription]);
+	}
+}
+
 -(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
 {
-	//Look for data
-	
-	//Send chunk: 20 bytes
-	
-//	[self.nativePeripheralManager updateValue:@"" forCharacteristic:self.serviceCharacteristics onSubscribedCentrals:nil];//Send to central
-	
-	//Send EOM
-	//NSData *eom = [@"ENDVAL" dataUsingEncoding:NSUTF8StringEncoding];
-	
-	//if(eom == nil)
-	//	return;
-	
-	//[self.nativePeripheralManager updateValue:eom forCharacteristic:self.serviceCharacteristic onSubscribedCentrals:nil];
+	if ([self.remoteDataCollectionService.commandCharacteristic isEqual:characteristic])
+	{
+		[self notifyThatCentralDidSubscribeForRemoteDataCollection: central];
+	}
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
+{
+	if ([self.remoteDataCollectionService.commandCharacteristic isEqual:characteristic])
+	{
+		[self notifyThatCentralDidUnsubscribeForRemoteDataCollection: central];
+	}
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray<CBATTRequest *> *)requests
+{
+
+	for (CBATTRequest * request in requests)
+	{
+		if ([request.characteristic.UUID isEqual:self.remoteDataCollectionService.dataCollectorIdentifierCharacteristic.UUID])
+		{
+			NSString * identifier = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
+			[self notifyThatCentral:request.central reportedIdentifier: identifier];
+		}
+		else if ([request.characteristic.UUID isEqual:self.remoteDataCollectionService.dataCollectorCollectionStatusCharacteristic.UUID])
+		{
+			NSString * message = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
+			BOOL isCollecting = [message boolValue];
+			[self notifyThatCentral:request.central updatedDataCollectionStatus:isCollecting];
+		}
+	}
+
 }
 
 @end

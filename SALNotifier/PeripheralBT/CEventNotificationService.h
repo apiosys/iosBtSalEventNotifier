@@ -11,8 +11,8 @@
 
 @interface CEventNotificationService : NSObject
 
-	@property(nonatomic, readonly) NSString *strServiceUUID;
-	@property(nonatomic, readonly) CBMutableService *theNotificationService;
+	-(CBMutableService*) service;
 
-	-(void)updateServiceMessageValue:(NSString *)notificationVal thePeripheralManager:(CBPeripheralManager *)periphMgr;
+	-(void)sendEventNotificationMessage:(NSString*)notificationVal UsingPeripheralManager:(CBPeripheralManager *)periphMgr;
+
 @end
